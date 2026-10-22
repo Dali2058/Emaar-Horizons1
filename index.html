@@ -1,53 +1,85 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Emaar Horizons | إعمار هورايزونز</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
 <style>
-:root{--ink:#0b0b0f;--mid:#6b6b78;--bg:#faf9ff;--green:#7c3aed;--soft:#a78bfa;--navy:#0b0b0f;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--ink:#0b0b0f;--mid:#6b6b78;--bg:#faf9ff;--green:#7c3aed;--soft:#a78bfa;--navy:#0b0b0f;--ksa:#006c35;--ease:cubic-bezier(.16,1,.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden}
+html[lang=en] body{font-family:'Montserrat','Tajawal',sans-serif}
 a{color:inherit;text-decoration:none}
 a:focus-visible,button:focus-visible,.card:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 svg.i{width:1em;height:1em;display:block}
-/* preloader + progress */
-#pre{position:fixed;inset:0;z-index:200;background:#0b0b0f;display:grid;place-items:center;transition:opacity .7s,visibility .7s}
-#pre.gone{opacity:0;visibility:hidden}
-#pre i{width:54px;height:54px;border-radius:50%;border:3px solid rgba(167,139,250,.25);border-top-color:var(--green);animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-#bar{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--soft),var(--green));z-index:90}
+/* intro */
+#intro{position:fixed;inset:0;z-index:300;color:#fff;overflow:hidden;font-family:'Montserrat','Tajawal',sans-serif}
+#intro.done{display:none}
+.hv{position:absolute;top:0;bottom:0;width:50.3%;background:#49856c;transition:transform 1.2s var(--ease)}
+.hv.l{left:0}.hv.r{right:0}
+#intro.open .hv.l{transform:translateX(-102%)}#intro.open .hv.r{transform:translateX(102%)}
+.i-c{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .5s}
+#intro.open .i-c{opacity:0}
+.frame{position:absolute;inset:16% 10%;width:80%;height:68%;opacity:0;animation:fr 3s .2s both}
+.frame path{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;vector-effect:non-scaling-stroke}
+@keyframes fr{0%{opacity:0;transform:scale(1.15)}20%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(.6)}}
+#i-stage{display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .9s var(--ease),opacity .7s,filter .7s}
+#intro.pull #i-stage{transform:scale(.25);opacity:0;filter:blur(8px)}
+#intro.pull .frame{display:none}
+.w{display:block;font-weight:800;font-size:clamp(2.2rem,8vw,5.4rem);line-height:1.15;letter-spacing:-1px;animation:cam 1.1s var(--ease) both}
+@keyframes cam{0%{opacity:0;transform:translateY(90px) scale(2.4);filter:blur(16px)}55%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}100%{opacity:1;transform:none;filter:none}}
+#i-ready{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;transform:scale(.85);transition:opacity .9s var(--ease),transform .9s var(--ease);pointer-events:none}
+#intro.ready #i-ready{opacity:1;transform:none}
+#i-ready p{font-size:clamp(1rem,2.6vw,1.5rem);font-weight:300;letter-spacing:4px;text-transform:uppercase}
+html[lang=ar] #i-ready p{letter-spacing:0;text-transform:none;font-weight:500}
+#i-ready img{height:clamp(54px,10vw,92px);filter:brightness(0) invert(1)}
+#skip{position:absolute;bottom:26px;inset-inline-end:6%;z-index:2;background:none;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:99px;padding:6px 18px;font:500 .8rem inherit;font-family:inherit;cursor:pointer}
+#skip:hover{background:rgba(255,255,255,.15)}
+#bar{position:fixed;top:0;inset-inline-start:0;height:3px;width:0;background:linear-gradient(90deg,var(--soft),var(--green));z-index:90}
 /* nav */
-#nav{position:fixed;top:0;inset-inline:0;z-index:50;height:72px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;color:#fff;transition:background .35s,color .35s,box-shadow .35s}
-#nav.solid{background:rgba(255,255,255,.9);backdrop-filter:blur(18px);color:var(--ink);box-shadow:0 6px 24px rgba(0,0,0,.08)}
-#nav img{height:40px;transition:filter .35s}
-#nav:not(.solid) img{filter:brightness(0) invert(1)}
-.links{display:flex;gap:4px;list-style:none}
-.links a{padding:8px 15px;border-radius:99px;font-weight:500;font-size:.92rem;transition:background .25s}
+#nav{position:fixed;top:0;inset-inline:0;z-index:50;height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#fff;transition:background .35s,color .35s,box-shadow .35s}
+#nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(18px);color:var(--ink);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand img{height:40px;transition:filter .35s}
+#nav:not(.solid) .brand img{filter:brightness(0) invert(1)}
+.sep{width:1px;height:28px;background:currentColor;opacity:.3}
+.ksa{display:flex;align-items:center;gap:8px}
+.ksa .b{width:36px;height:36px;border-radius:50%;background:var(--ksa);color:#fff;display:grid;place-items:center;padding:7px;border:1.5px solid rgba(255,255,255,.7)}
+.ksa .b svg{width:100%;height:100%}
+.ksa small{font-size:.62rem;line-height:1.25;font-weight:600;letter-spacing:.3px;max-width:78px}
+@media(max-width:1100px){.ksa small{display:none}}
+.links{display:flex;gap:2px;list-style:none}
+.links a{padding:8px 12px;border-radius:99px;font-weight:500;font-size:.85rem;transition:background .25s;white-space:nowrap}
 .links a:hover{background:rgba(124,58,237,.2)}
+.nr{display:flex;align-items:center;gap:10px}
+.lang{height:40px;padding:0 16px;border-radius:99px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.12);color:inherit;font:700 .85rem 'Tajawal','Montserrat',sans-serif;cursor:pointer;transition:background .25s}
+.lang:hover{background:var(--green);border-color:var(--green);color:#fff}
+#nav.solid .lang{border-color:rgba(124,58,237,.35);background:rgba(124,58,237,.08)}
+#nav.solid .lang:hover{background:var(--green);color:#fff}
 .burger{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:inherit;cursor:pointer;place-items:center;font-size:24px}
 #nav.solid .burger{border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.08)}
-@media(max-width:860px){.links{display:none}.burger{display:grid}}
+@media(max-width:1000px){.links{display:none}.burger{display:grid}}
 /* drawer */
 #drawer{position:fixed;inset:0;z-index:120;background:rgba(11,11,15,.98);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 9%;transform:translateX(100%);visibility:hidden;transition:transform .55s var(--ease),visibility .55s}
 #drawer.open{transform:none;visibility:visible}
 #drawer .dx{position:absolute;top:13px;inset-inline-start:6%;width:46px;height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;cursor:pointer;display:grid;place-items:center;font-size:24px}
-#drawer a{display:flex;align-items:center;gap:16px;font-size:1.35rem;font-weight:700;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:0;transform:translateX(30px);transition:.5s var(--ease)}
+#drawer a{display:flex;align-items:center;gap:16px;font-size:1.25rem;font-weight:700;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:0;transform:translateX(30px);transition:.5s var(--ease)}
 #drawer.open a{opacity:1;transform:none}
 #drawer a span.ic{width:42px;height:42px;border-radius:12px;background:rgba(124,58,237,.25);color:var(--soft);display:grid;place-items:center;font-size:22px}
 #drawer a:hover{color:var(--soft)}
 /* hero */
 #hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;color:#fff;background:#111 url(https://i.postimg.cc/13vmWFzf/0369fc75-767f-444b-a834-0a56132945fd.jpg) center/cover}
 #hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,6,45,.85) 0%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.4) 100%)}
-.hero-in{position:relative;padding:0 6% 9vh;max-width:760px;animation:up 1s var(--ease) both}
-@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-.hero-in h1{font-weight:900;font-size:clamp(2.2rem,5.4vw,4.2rem);line-height:1.2;margin-bottom:18px}
+.hero-in{position:relative;padding:0 6% 9vh;max-width:800px}
+.hero-in h1{font-weight:900;font-size:clamp(2rem,5vw,3.9rem);line-height:1.2;margin-bottom:18px}
 .hero-in h1 em{font-style:normal;background:linear-gradient(90deg,#c4b5fd,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-in p{font-weight:300;font-size:1.08rem;max-width:520px;color:rgba(255,255,255,.88);margin-bottom:30px}
-.btn{display:inline-block;padding:14px 34px;border-radius:99px;font-weight:700;background:var(--green);color:#fff;transition:transform .3s,background .3s,box-shadow .3s;box-shadow:0 10px 30px rgba(124,58,237,.35)}
+.hero-in p{font-weight:300;font-size:1.05rem;max-width:540px;color:rgba(255,255,255,.88);margin-bottom:30px}
+body.go .hero-in{animation:up 1s .3s var(--ease) both}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.btn{display:inline-block;padding:14px 34px;border-radius:99px;font-weight:700;background:var(--green);color:#fff;transition:transform .3s,background .3s;box-shadow:0 10px 30px rgba(124,58,237,.35)}
 .btn:hover{transform:translateY(-3px);background:#6d28d9}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.6);margin-inline-start:10px;box-shadow:none}
 .btn.ghost:hover{background:rgba(255,255,255,.14)}
@@ -55,40 +87,60 @@ svg.i{width:1em;height:1em;display:block}
 .scroll::after{content:'';position:absolute;top:8px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:4px;background:#fff;animation:wheel 1.8s infinite}
 @keyframes wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(16px)}}
 @media(max-width:600px){.scroll{display:none}}
-/* squares (stats + services) */
+/* sections + dashboard */
 .sec{padding:80px 6% 20px}
-.sq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-@media(max-width:800px){.sq-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
-.sq{aspect-ratio:1;border-radius:24px;background:#fff;border:1px solid rgba(124,58,237,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:14px;position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s,background .4s,color .4s}
-.sq::before{content:'';position:absolute;width:140%;height:140%;top:-20%;left:-150%;background:linear-gradient(105deg,transparent 40%,rgba(167,139,250,.35),transparent 60%);transition:left .9s var(--ease)}
-.sq:hover::before{left:120%}
-.sq:hover{transform:translateY(-10px) rotate(-1.5deg);box-shadow:0 24px 50px rgba(124,58,237,.28)}
-.sq.dark{background:#0b0b0f;color:#fff;border-color:#0b0b0f}
-.sq.dark:hover{background:var(--green)}
-.sq .ic{font-size:clamp(34px,5vw,50px);color:var(--green);animation:float 3.2s ease-in-out infinite;display:block}
-.sq.dark .ic{color:var(--soft)}.sq.dark:hover .ic{color:#fff}
-.sq:nth-child(2) .ic{animation-delay:-.8s}.sq:nth-child(3) .ic{animation-delay:-1.6s}.sq:nth-child(4) .ic{animation-delay:-2.4s}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(6deg)}}
-.sq b{font:800 clamp(1.7rem,3.6vw,2.6rem) 'Montserrat',sans-serif;line-height:1.1}
-.sq h3{font-size:clamp(1rem,2vw,1.2rem);font-weight:800}
-.sq span.t{font-size:.9rem;color:var(--mid)}.sq.dark span.t{color:rgba(255,255,255,.7)}
-.rv{opacity:0;transform:translateY(34px) scale(.96);transition:opacity .8s var(--ease),transform .8s var(--ease),box-shadow .5s,background .4s,color .4s}
+.head{max-width:760px;margin-bottom:40px}
+.head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;line-height:1.35;margin-bottom:10px}
+.head h2::after{content:'';display:block;width:64px;height:5px;border-radius:9px;background:var(--green);margin-top:12px}
+.head p{color:var(--mid);font-size:1rem}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
-.rv.in:hover{transform:translateY(-10px) rotate(-1.5deg)}
-.head.rv.in:hover{transform:none}
 .stag1{transition-delay:.08s}.stag2{transition-delay:.16s}.stag3{transition-delay:.24s}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.kpis{grid-template-columns:1fr}}
+.kpi{background:#fff;border:1px solid rgba(124,58,237,.14);border-top:4px solid var(--green);border-radius:6px;padding:22px;box-shadow:0 10px 30px rgba(11,11,15,.05)}
+.kpi.dk{background:var(--navy);color:#fff;border-color:rgba(167,139,250,.3);border-top-color:var(--soft)}
+.k-top{display:flex;justify-content:space-between;align-items:center;font:600 .72rem 'Montserrat',sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
+.dk .k-top{color:rgba(255,255,255,.65)}
+.live{display:inline-flex;align-items:center;gap:6px}
+.live::before{content:'';width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}60%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+.k-mid{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0}
+.k-num{font:800 clamp(2rem,3.4vw,2.8rem) 'Montserrat',sans-serif;line-height:1;direction:ltr}
+.ring{position:relative;width:92px;height:92px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:8}
+.ring .bg{stroke:rgba(124,58,237,.14)}.dk .ring .bg{stroke:rgba(255,255,255,.12)}
+.ring .fg{stroke:var(--green);stroke-linecap:round;stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset 2s var(--ease)}
+.dk .ring .fg{stroke:var(--soft)}
+.ring .orb{position:absolute;inset:-5px;border-radius:50%;border:1.5px dashed rgba(124,58,237,.45);animation:rot 14s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.k-lbl{font-weight:700;font-size:.98rem;margin-bottom:12px}
+.spark{display:flex;align-items:flex-end;gap:4px;height:34px}
+.spark i{flex:1;background:linear-gradient(to top,var(--green),var(--soft));border-radius:2px 2px 0 0;height:30%;animation:bars 2.4s ease-in-out infinite}
+.spark i:nth-child(2){animation-delay:-.3s}.spark i:nth-child(3){animation-delay:-.6s}.spark i:nth-child(4){animation-delay:-.9s}.spark i:nth-child(5){animation-delay:-1.2s}.spark i:nth-child(6){animation-delay:-1.5s}.spark i:nth-child(7){animation-delay:-1.8s}.spark i:nth-child(8){animation-delay:-2.1s}
+@keyframes bars{0%,100%{height:25%}50%{height:100%}}
+.panel{background:#fff;border:1px solid rgba(124,58,237,.14);border-radius:6px;box-shadow:0 10px 30px rgba(11,11,15,.05);overflow:hidden}
+.row{display:grid;grid-template-columns:54px 1.1fr 2fr 64px;align-items:center;gap:20px;padding:22px 26px;border-bottom:1px solid rgba(124,58,237,.1)}
+.row:last-child{border-bottom:0}
+.row .ic{width:50px;height:50px;border-radius:10px;background:rgba(124,58,237,.1);color:var(--green);display:grid;place-items:center;font-size:26px;animation:fl 3.2s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-5px)}}
+.row h3{font-size:1.05rem;font-weight:800;line-height:1.3}.row small{color:var(--mid);font-size:.85rem}
+.meter{height:10px;border-radius:99px;background:rgba(124,58,237,.12);overflow:hidden}
+.meter b{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--soft),var(--green));position:relative;overflow:hidden;transition:width 2s var(--ease)}
+.meter b::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:shim 2.2s infinite}
+@keyframes shim{to{transform:translateX(100%)}}
+.pct{font:800 1.2rem 'Montserrat',sans-serif;text-align:end;direction:ltr}
+@media(max-width:760px){.row{grid-template-columns:50px 1fr 54px;gap:14px;padding:18px}.row .meter{grid-column:1/-1;order:5}}
 /* projects */
 #projects{padding:90px 0 100px}
-.head{max-width:760px;margin-bottom:54px}
 #projects .head{padding:0 6%}
-.sec .head{padding:0;margin-bottom:34px}
-.head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:900;line-height:1.35;margin-bottom:12px}
-.head h2::after{content:'';display:block;width:64px;height:5px;border-radius:9px;background:var(--green);margin-top:12px}
-.head p{color:var(--mid);font-size:1.02rem}
 .marquee{overflow:hidden;direction:ltr;padding:24px 0;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .marquee:active{cursor:grabbing}
 .track{display:flex;width:max-content;will-change:transform}
-.card{direction:rtl;flex:none;width:clamp(240px,24vw,340px);margin:0 12px;cursor:pointer;transition:transform .5s var(--ease),filter .5s,opacity .5s;background:none;border:0;text-align:right;font:inherit;color:inherit}
+.card{flex:none;width:clamp(240px,24vw,340px);margin:0 12px;cursor:pointer;transition:transform .5s var(--ease),filter .5s,opacity .5s;background:none;border:0;text-align:start;font:inherit;color:inherit}
+html[dir=rtl] .card{direction:rtl}
 .card .ph{aspect-ratio:3/4;overflow:hidden;background:#ddd;border-radius:18px}
 .card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
 .card h3{font-size:1.05rem;font-weight:800;margin-top:14px}
@@ -98,13 +150,9 @@ svg.i{width:1em;height:1em;display:block}
 .hint{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--mid);font-size:.88rem;margin-top:6px}
 .hint svg{font-size:20px;color:var(--green);animation:sway 1.6s ease-in-out infinite}
 @keyframes sway{50%{transform:translateX(8px)}}
-/* catalogue */
-#catalogue{padding:90px 6% 100px;background:#fff}
-#catalogue .head{margin-inline:auto;text-align:center}
-#catalogue .head h2::after{margin-inline:auto}
-.cat-wrap{max-width:960px;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;border:1px solid rgba(124,58,237,.14);box-shadow:0 30px 70px rgba(124,58,237,.18)}
-.cat-wrap img{display:block;width:100%;height:auto}
-@media(max-width:700px){#catalogue{padding:60px 4% 70px}.cat-wrap{border-radius:14px}}
+/* catalogue: full bleed */
+#catalogue{padding:0;background:#fff;line-height:0}
+#catalogue img{display:block;width:100%;height:auto}
 /* modal */
 #modal{position:fixed;inset:0;z-index:100;display:none;background:rgba(8,6,14,.95);color:#fff;flex-direction:column;padding:22px 5% 18px}
 #modal.open{display:flex;animation:fade .3s}
@@ -120,164 +168,236 @@ svg.i{width:1em;height:1em;display:block}
 .thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
 .thumbs img{height:64px;width:90px;object-fit:cover;flex:none;cursor:pointer;opacity:.45;transition:opacity .2s;border-bottom:3px solid transparent}
 .thumbs img.on{opacity:1;border-color:var(--green)}
-/* contact + footer */
-#contact{background:var(--navy);color:#fff;padding:90px 6%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-#contact h2{font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:900;margin-bottom:14px}
-#contact p{color:rgba(255,255,255,.72);font-weight:300}
-.ci{display:flex;flex-direction:column;gap:14px}
-.ci div{padding:18px 22px;border:1px solid rgba(167,139,250,.28);border-radius:14px}
-.ci strong{display:block;font:700 .75rem 'Montserrat',sans-serif;letter-spacing:2px;color:var(--soft)}
-.ci span{direction:ltr;display:inline-block}
-@media(max-width:800px){#contact{grid-template-columns:1fr;gap:34px}}
-footer{padding:22px 6%;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:.85rem;color:rgba(255,255,255,.6);background:#000;border-top:1px solid rgba(167,139,250,.25)}
-footer img{height:30px;filter:brightness(0) invert(1)}
-footer .tel{direction:ltr;font:700 .95rem 'Montserrat',sans-serif;color:#fff;padding:8px 18px;border-radius:99px;background:var(--green)}
-@media(max-width:700px){footer{justify-content:center;text-align:center}}
-/* floating call */
+/* footer */
+footer{background:#b8a1f5;color:#0b0b0f;border-top:5px solid var(--ksa)}
+.f-main{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding:50px 6% 36px}
+.f-brand img.lg{height:44px;filter:brightness(0);margin-bottom:16px}
+.f-ksa{display:flex;align-items:center;gap:12px;margin:6px 0 14px}
+.f-ksa .b{width:46px;height:46px;border-radius:50%;background:var(--ksa);color:#fff;padding:9px;flex:none}
+.f-ksa .b svg{width:100%;height:100%}
+.f-ksa strong{display:block;font-size:.95rem;line-height:1.3}
+.f-brand p{font-size:.88rem;max-width:340px;color:rgba(0,0,0,.75)}
+footer h4{font:800 .78rem 'Montserrat',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+html[lang=ar] footer h4{letter-spacing:0;font-size:.95rem}
+footer ul{list-style:none;display:grid;gap:8px;font-size:.92rem}
+footer ul a:hover{text-decoration:underline}
+footer .tel{display:inline-block;direction:ltr;font:700 1rem 'Montserrat',sans-serif;color:#fff;padding:10px 22px;border-radius:99px;background:var(--navy)}
+.f-bot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 6%;border-top:1px solid rgba(0,0,0,.22);font-size:.85rem;color:#0b0b0f}
+.dev{display:flex;align-items:center;gap:12px}
+.dev img{height:28px;filter:brightness(0)}
+@media(max-width:800px){.f-main{grid-template-columns:1fr}.f-bot{justify-content:center;text-align:center}}
 #fab{position:fixed;bottom:22px;inset-inline-start:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 30px rgba(124,58,237,.5);animation:pulse 2.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,58,237,.55)}70%{box-shadow:0 0 0 18px rgba(124,58,237,0)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div id="pre"><i></i></div><div id="bar"></div>
+
+<div id="intro">
+  <div class="hv l"></div><div class="hv r"></div>
+  <div class="i-c">
+    <svg class="frame" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 12V0h8M92 0h8v12M100 88v12h-8M8 100H0V88"/></svg>
+    <div id="i-stage"></div>
+    <div id="i-ready"><p id="i-q"></p><img src="emmar.png" alt="Emaar Horizons"/></div>
+  </div>
+  <button id="skip" data-t="skip"></button>
+</div>
+<div id="bar"></div>
 
 <nav id="nav">
-  <a href="/"><img src="emmar.png" alt="Emaar Horizons"/></a>
+  <div class="brand">
+    <a href="/"><img src="emmar.png" alt="Emaar Horizons"/></a>
+    <span class="sep"></span>
+    <span class="ksa"><span class="b" id="emb1"></span><small data-t="kingdom"></small></span>
+  </div>
   <ul class="links" id="links"></ul>
-  <button class="burger" id="burger" aria-label="القائمة"></button>
+  <div class="nr"><button class="lang" id="lang1"></button><button class="burger" id="burger" aria-label="Menu"></button></div>
 </nav>
-<div id="drawer"><button class="dx" id="dx" aria-label="إغلاق"></button></div>
+<div id="drawer"><button class="dx" id="dx" aria-label="Close"></button></div>
 
 <header id="hero">
   <div class="hero-in">
-    <h1>نضيء رؤيتك <em>بحرفية لا مثيل لها</em></h1>
-    <p>أعمال كهروميكانيكية وديكورات ومشاريع هندسية متكاملة، من الفكرة حتى التسليم.</p>
-    <a href="#projects" class="btn">شاهد مشاريعنا</a><a href="#contact" class="btn ghost">تواصل معنا</a>
+    <h1 id="h1"></h1>
+    <p data-t="heroP"></p>
+    <a href="#projects" class="btn" data-t="btn1"></a><a href="#contact" class="btn ghost" data-t="btn2"></a>
   </div>
   <div class="scroll"></div>
 </header>
 
-<section class="sec"><div class="sq-grid" id="stats"></div></section>
+<section class="sec">
+  <div class="head rv"><h2 data-t="dashT"></h2><p data-t="dashP"></p></div>
+  <div class="kpis" id="kpis"></div>
+</section>
 
 <section class="sec" id="services">
-  <div class="head rv"><h2>خدماتنا</h2><p>كل ما يحتاجه مشروعك تحت سقف واحد.</p></div>
-  <div class="sq-grid" id="svc"></div>
+  <div class="head rv"><h2 data-t="svcT"></h2><p data-t="svcP"></p></div>
+  <div class="panel rv" id="svc"></div>
 </section>
 
 <section id="projects">
-  <div class="head rv">
-    <h2>مشاريع تتميز بالجودة<br/>والإتقان</h2>
-    <p>اضغط على أي مشروع لعرض صوره وتفاصيله.</p>
-  </div>
+  <div class="head rv"><h2 data-t="projT"></h2><p data-t="projP"></p></div>
   <div class="marquee" id="marquee"><div class="track" id="track"></div></div>
-  <div class="hint" id="hint"></div>
+  <div class="hint"><span id="harr"></span><span data-t="hint"></span></div>
 </section>
 
 <section id="catalogue">
-  <div class="head rv">
-    <h2>كتالوج إعمار هورايزونز</h2>
-    <p>تصفح الكتالوج كاملًا بالسكرول لأسفل.</p>
-  </div>
-  <div class="cat-wrap">
-    <img src="catalogue/part-01.jpg" alt="كتالوج إعمار هورايزونز - جزء 1" width="1200" height="4000" decoding="async"/>
-    <img src="catalogue/part-02.jpg" alt="كتالوج إعمار هورايزونز - جزء 2" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-03.jpg" alt="كتالوج إعمار هورايزونز - جزء 3" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-04.jpg" alt="كتالوج إعمار هورايزونز - جزء 4" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-05.jpg" alt="كتالوج إعمار هورايزونز - جزء 5" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-06.jpg" alt="كتالوج إعمار هورايزونز - جزء 6" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-07.jpg" alt="كتالوج إعمار هورايزونز - جزء 7" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-08.jpg" alt="كتالوج إعمار هورايزونز - جزء 8" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-09.jpg" alt="كتالوج إعمار هورايزونز - جزء 9" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-10.jpg" alt="كتالوج إعمار هورايزونز - جزء 10" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-11.jpg" alt="كتالوج إعمار هورايزونز - جزء 11" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-12.jpg" alt="كتالوج إعمار هورايزونز - جزء 12" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-13.jpg" alt="كتالوج إعمار هورايزونز - جزء 13" width="1200" height="4000" loading="lazy" decoding="async"/>
-    <img src="catalogue/part-14.jpg" alt="كتالوج إعمار هورايزونز - جزء 14" width="1200" height="4040" loading="lazy" decoding="async"/>
-  </div>
+  <img src="catalogue/part-01.jpg" alt="Emaar Horizons catalogue 1" width="1200" height="4000" decoding="async"/>
+  <img src="catalogue/part-02.jpg" alt="Emaar Horizons catalogue 2" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-03.jpg" alt="Emaar Horizons catalogue 3" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-04.jpg" alt="Emaar Horizons catalogue 4" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-05.jpg" alt="Emaar Horizons catalogue 5" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-06.jpg" alt="Emaar Horizons catalogue 6" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-07.jpg" alt="Emaar Horizons catalogue 7" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-08.jpg" alt="Emaar Horizons catalogue 8" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-09.jpg" alt="Emaar Horizons catalogue 9" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-10.jpg" alt="Emaar Horizons catalogue 10" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-11.jpg" alt="Emaar Horizons catalogue 11" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-12.jpg" alt="Emaar Horizons catalogue 12" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-13.jpg" alt="Emaar Horizons catalogue 13" width="1200" height="4000" loading="lazy" decoding="async"/>
+  <img src="catalogue/part-14.jpg" alt="Emaar Horizons catalogue 14" width="1200" height="4040" loading="lazy" decoding="async"/>
 </section>
 
 <div id="modal" role="dialog" aria-modal="true">
-  <div class="m-top"><div><h3 id="m-title"></h3><p id="m-sub"></p></div><button class="x" id="m-close" aria-label="إغلاق">✕</button></div>
-  <div class="stage"><button class="nv" id="m-next" aria-label="التالي">›</button><img id="m-img" alt=""/><button class="nv" id="m-prev" aria-label="السابق">‹</button></div>
+  <div class="m-top"><div><h3 id="m-title"></h3><p id="m-sub"></p></div><button class="x" id="m-close" aria-label="Close">✕</button></div>
+  <div class="stage"><button class="nv" id="m-prev" aria-label="Previous"></button><img id="m-img" alt=""/><button class="nv" id="m-next" aria-label="Next"></button></div>
   <div class="thumbs" id="m-thumbs"></div>
 </div>
 
-<section id="contact">
-  <div><h2>هل لديك مشروع في ذهنك؟</h2><p>نسعد بمناقشة تفاصيل مشروعك وتقديم الاستشارة اللازمة لإنجاحه.</p></div>
-  <div class="ci">
-    <div><strong>PHONE</strong><span>+966 55 418 6401</span><br/><span>+966 11 210 9222</span></div>
-    <div><strong>EMAIL</strong><span>project@nebras.com.sa</span></div>
-    <div><strong>LOCATION</strong>المملكة العربية السعودية</div>
+<footer id="contact">
+  <div class="f-main">
+    <div class="f-brand">
+      <img class="lg" src="emmar.png" alt="Emaar Horizons"/>
+      <div class="f-ksa"><span class="b" id="emb2"></span><strong data-t="kingdom2"></strong></div>
+      <p data-t="fAbout"></p>
+    </div>
+    <div><h4 data-t="fLinks"></h4><ul id="flinks"></ul></div>
+    <div><h4 data-t="fContact"></h4><a class="tel" href="tel:+966554186401">+966 55 418 6401</a></div>
   </div>
-</section>
-<footer>
-  <img src="emmar.png" alt="Emaar Horizons"/>
-  <a class="tel" href="tel:+966554186401">+966 55 418 6401</a>
-  <span>© 2026 إعمار هورايزونز — جميع الحقوق محفوظة</span>
+  <div class="f-bot">
+    <span id="rights"></span>
+    <span class="dev"><span data-t="dev"></span><img src="https://i.postimg.cc/0jhfGNLC/Asset-6-2x.png" alt="Developer"/></span>
+  </div>
 </footer>
-<a id="fab" href="tel:+966554186401" aria-label="اتصل بنا"></a>
+<a id="fab" href="tel:+966554186401" aria-label="Call"></a>
 
 <script>
 const B='https://i.postimg.cc/';
 const L=s=>s.trim().split(/\s+/).map(x=>B+x);
 const projects=[
-{n:'مشروع العمر',c:'شركة أبعاد فنية',i:L(`fLxvsDpL/012609db-99a0-4879-9c19-873d9dd8f03f.jpg 76vNjfsY/2960948d-1ee1-423e-b487-92962f1e5e43.jpg 4dC1jmLx/42b21b84-7888-49e3-bd13-4c41f4f5bcb3.jpg HxGtFVZL/45def0da-daf2-4695-8866-c159210af865.jpg PxGM0P3Y/5f005408-1443-4c19-b76f-033913a72262.jpg 63shFyjG/724a3832-4c4e-4a7b-91a7-8bc234a3b7fe.jpg B6WCRXYs/9da7bb76-6c71-4b43-a884-e56ba783ebeb.jpg FRtxw7WR/a74d53f0-a800-4652-a5aa-4e88f8bee140.jpg G2kjRdVB/cb221179-aa15-42e7-84ab-fbc802375d65.jpg XJMgtpHF/d6b5743d-ca49-4703-98e6-27b4f1bbb1e4.jpg rm697KnR/f105dae1-26c6-4a87-8f23-fa08add1a1aa.jpg`)},
-{n:'مشروع سكك المهرة',c:'شركة وثبة',i:L(`MpQMNth5/0480e9e7-7460-4002-84eb-0df19ed77b5a.jpg Z5dB2j1x/0606f85d-30db-4f6f-8bdb-866555359b42.jpg hGRzBTBb/13ae9354-2c02-433a-b9aa-9f7c14976f94.jpg kgb6zwkY/29c3c44a-74b1-46cc-94b3-22aba9cd54a0.jpg jjYwbPbH/331d5c74-b224-4664-bc30-7df21b73c906.jpg HkycR3f0/366b7b1b-43ae-4128-ac59-511618dd33a9.jpg ZqzBSpSL/4f073fb2-248d-4109-849c-2ad97a9cc060.jpg XYCGmxTs/6b00d30e-572c-4c52-b6fb-dcb86622bdb3.jpg rwr03gvJ/71ddf751-c7f3-429f-8811-5fefc3e5b56c.jpg BvfL0H0M/a34c4289-ca83-46ed-9fef-0fd6f4ad0d98.jpg JzkDvK9Q/a9b31c9d-fabe-4a33-b12c-cef8b191d2cb.jpg PqnpjYjK/e4192bb6-663f-453c-8976-69e90c69ff29.jpg N0v9cmcD/e76af12f-13a2-4b2a-9ae9-544f407b2b22.jpg nLfjJBJK/f80c60b2-5f51-467e-85e1-9cf212adb180.jpg`)},
-{n:'مباني مستودعات الكاب فور',c:'شركة الراشد',i:L(`ZR75CyGh/0d5db3ef-5264-464e-9a3d-b3c6b4b1e3b0.jpg xCx1cbWp/140c5e05-cd8e-47c2-a494-85d50dfe829b.jpg Px35P8B0/2b021301-0436-4069-9d29-460d36f73139.jpg j5gSLJGF/484c7603-070f-448a-8fb4-dd49d101db82.jpg bJCws2K7/5b288d6e-7147-4041-b2aa-f6a5eac2ded4.jpg 0Q2NkCB1/7e30d6c2-5554-49d7-bba9-f0168d1cff69.jpg RFV0STbj/9226b391-2c58-48fb-a6b5-f96034ac9af8.jpg 85Kzjr2Q/d2a40525-254d-4248-920b-c6d456dbc66e.jpg ZR75Cy1g/e46c0714-8c5d-44bd-a0c0-33a0ada46c30.jpg ZR75CyGS/f9a22662-283b-49ea-8fdb-c8682dba4b07.jpg`)},
-{n:'مشروع حطين',c:'',i:L(`RCWHwMXQ/1b952e49-c55b-4130-b635-23d25c60f4e8.jpg PNGhwb2n/2ab547c3-12ac-4f2b-b1b6-361e006b7db0.jpg t70yxd2p/39e4810a-2785-4855-8d38-ec61fb912a72.jpg V5y1C9D1/45b86074-03cd-43c7-885a-7dd4ad8e2b0e.jpg YjckWNbr/4837af35-fe28-4def-9195-dec00c2fb0a5.jpg LhdR1kvG/4d8727da-2b08-43b4-85a9-9d635f8703ee.jpg 7bvD21my/4daf386b-b5ef-4525-b9e0-024fe0ff7a18.jpg J0HM0Y32/50a33421-26e0-4782-918a-99100b971249.jpg pyNxFQkS/5fbf08f8-bcdf-4850-888b-2d9bed8ef77b.jpg tRsxFX2V/61ea3f5d-f3ab-4839-a9d8-0f0425d3ae9e.jpg HWrybpBM/72b4fe25-de45-4aa1-9c1b-df586f842b74.jpg RCWHwMXc/7549b7a6-5d42-4483-ba56-e9eb41bb2c89.jpg nVXDqH04/7687fd03-6bb8-4059-9853-0be4cad37fb8.jpg Sj0qMLVt/7d217678-9f28-4c73-b791-5b351f4950d0.jpg gr9dZyNJ/946cc2f3-7a09-4419-8ff3-2225d531210f.jpg 5jc1C5nx/a83e280b-3b61-4f2c-abe1-20e8334773e2.jpg 5jc1C5nV/b26692dc-62d4-4c15-8213-0eb10e761fdf.jpg mZPH7b8w/d15fdef3-c92b-454e-a252-50a7f7f73929.jpg yWqBZhnp/d6b50884-1d09-40bd-a983-9e80e1c44a64.jpg gcxZ3YNK/db14102c-57d1-439b-979d-60dcbe0cc608.jpg jCVK76Zd/e1abe03e-3197-45ee-b02b-a69232619922.jpg rz6crGgP/e5b983c0-d344-49ac-98f7-04d87edde9b5.jpg t70yxd20/f89a3481-8811-4866-8cec-7b51f8dcf85b.jpg`)},
-{n:'فلل خاصة متفرقة',c:'عظم وتشطيب',i:L(`tCh7z7PW/10311547-cd4d-481e-a3ee-64626e6d3c12.jpg tC0YPF1x/14eb9dfc-772e-4a1d-8e4e-a7db7cf57c40.jpg QdhCYsJZ/150bdcb6-fad5-4fe9-9b02-8e4358cc594e.jpg hP9h0hx5/2a4b6adf-a0bd-4ab8-a9ba-925b75df00f2.jpg 52byK1S9/39dc4e86-2c1a-4cea-8aa4-c4238e266c09.jpg Ghk9j9YS/39f3b915-94cf-4087-b1f3-317440b2be89.jpg JzM0YmcP/3f9233e9-2e2a-4223-bd0b-cc75a5a483f7.jpg Fsj1x1cy/5c7c81ff-8159-49e2-bf16-70cc7a416ce0.jpg 8PhsbsW9/62584b93-6c93-41bb-99c1-b134344c999e.jpg GmdtgrJW/69b39911-6695-4b6a-8971-d00fbecf2c74.jpg ncvM1M71/75d12dee-c501-43ba-b710-f5c973c1c57f.jpg 02prCrmr/81b632b2-00a0-4307-9129-be7568cbb0e6.jpg hP9h0hx9/8946f7b3-c879-4935-86a1-fc85db0cdc9e.jpg SxkR1qf0/8bd5242f-7de6-4209-87ec-388844652793.jpg 02prCrmn/9da839d1-23fb-400e-be7a-42efca491e14.jpg XY4q13kv/b48f8bcc-ae30-4783-9ffb-2de116937d82.jpg 15p4K46v/b63c906e-f79f-45b4-8409-6aabc221cc6f.jpg Dyqmcmsb/b85a0a87-358c-42bb-b24e-245c4d2e19ef.jpg nhprSZYg/b867a19a-5f66-411a-9c52-2aaa63e7e8c8.jpg c4Q6c6YD/bb134a4d-15b1-4e73-97d5-d3dabdba9afa.jpg Z54nsZxZ/c2fc160e-ba03-47ea-84a7-71ff0bbbb2c4.jpg 7YgbNb7X/d31b48ae-0d74-435a-afab-9b88c83f967b.jpg 13sX7PrX/d3ba0484-caa2-4a1b-bd07-adc25365327d.jpg qv4qD0XF/e54182f6-5f6a-4c34-8ade-7d49a15ffeeb.jpg X7wXgXFk/fe3697ac-43bb-4caa-b799-a7cdc6d976fe.jpg`)},
-{n:'مشروع فلل الفوزان الرحاب',c:'',i:L(`13vmWFzf/0369fc75-767f-444b-a834-0a56132945fd.jpg 2S0kHW53/1a47e2e9-e492-4559-a7d7-e5a07e8ef7ec.jpg jSxqQcR5/3d5a24b4-ff08-4e02-adaa-d3343fd92d2e.jpg T3tdkbPY/50d57ba6-6874-4e79-9b49-f72563e6c725.jpg Z5wbfNqp/57b21ee0-c72a-44d5-adca-d4765fac4cd8.jpg Z5wbfNqB/5a89b532-ba36-4f2b-b38b-a8edbaa2bed1.jpg 13vmWFzG/62026df6-8894-4094-897a-dfda14d1d352.jpg 4xWf8c3B/8baab43e-c993-4b92-8072-16ccbef5ac2c.jpg dV5sWC0T/a2d559a9-a817-45ef-b277-6d46f5461ae7.jpg qvJBXwpC/d67b0262-e496-47d4-925f-f30633156710.jpg vZ0YPnmt/f27edb94-7854-476a-ad1a-ecb14a3ae6e9.jpg`)}
+{n:{ar:'مشروع العمر',en:'Project of a Lifetime'},c:{ar:'شركة أبعاد فنية',en:'Abaad Fanniya Co.'},i:L(`fLxvsDpL/012609db-99a0-4879-9c19-873d9dd8f03f.jpg 76vNjfsY/2960948d-1ee1-423e-b487-92962f1e5e43.jpg 4dC1jmLx/42b21b84-7888-49e3-bd13-4c41f4f5bcb3.jpg HxGtFVZL/45def0da-daf2-4695-8866-c159210af865.jpg PxGM0P3Y/5f005408-1443-4c19-b76f-033913a72262.jpg 63shFyjG/724a3832-4c4e-4a7b-91a7-8bc234a3b7fe.jpg B6WCRXYs/9da7bb76-6c71-4b43-a884-e56ba783ebeb.jpg FRtxw7WR/a74d53f0-a800-4652-a5aa-4e88f8bee140.jpg G2kjRdVB/cb221179-aa15-42e7-84ab-fbc802375d65.jpg XJMgtpHF/d6b5743d-ca49-4703-98e6-27b4f1bbb1e4.jpg rm697KnR/f105dae1-26c6-4a87-8f23-fa08add1a1aa.jpg`)},
+{n:{ar:'مشروع سكك المهرة',en:'Sakak Al Mahra Project'},c:{ar:'شركة وثبة',en:'Wathba Company'},i:L(`MpQMNth5/0480e9e7-7460-4002-84eb-0df19ed77b5a.jpg Z5dB2j1x/0606f85d-30db-4f6f-8bdb-866555359b42.jpg hGRzBTBb/13ae9354-2c02-433a-b9aa-9f7c14976f94.jpg kgb6zwkY/29c3c44a-74b1-46cc-94b3-22aba9cd54a0.jpg jjYwbPbH/331d5c74-b224-4664-bc30-7df21b73c906.jpg HkycR3f0/366b7b1b-43ae-4128-ac59-511618dd33a9.jpg ZqzBSpSL/4f073fb2-248d-4109-849c-2ad97a9cc060.jpg XYCGmxTs/6b00d30e-572c-4c52-b6fb-dcb86622bdb3.jpg rwr03gvJ/71ddf751-c7f3-429f-8811-5fefc3e5b56c.jpg BvfL0H0M/a34c4289-ca83-46ed-9fef-0fd6f4ad0d98.jpg JzkDvK9Q/a9b31c9d-fabe-4a33-b12c-cef8b191d2cb.jpg PqnpjYjK/e4192bb6-663f-453c-8976-69e90c69ff29.jpg N0v9cmcD/e76af12f-13a2-4b2a-9ae9-544f407b2b22.jpg nLfjJBJK/f80c60b2-5f51-467e-85e1-9cf212adb180.jpg`)},
+{n:{ar:'مباني مستودعات الكاب فور',en:'Cap Four Warehouse Buildings'},c:{ar:'شركة الراشد',en:'Al Rashed Company'},i:L(`ZR75CyGh/0d5db3ef-5264-464e-9a3d-b3c6b4b1e3b0.jpg xCx1cbWp/140c5e05-cd8e-47c2-a494-85d50dfe829b.jpg Px35P8B0/2b021301-0436-4069-9d29-460d36f73139.jpg j5gSLJGF/484c7603-070f-448a-8fb4-dd49d101db82.jpg bJCws2K7/5b288d6e-7147-4041-b2aa-f6a5eac2ded4.jpg 0Q2NkCB1/7e30d6c2-5554-49d7-bba9-f0168d1cff69.jpg RFV0STbj/9226b391-2c58-48fb-a6b5-f96034ac9af8.jpg 85Kzjr2Q/d2a40525-254d-4248-920b-c6d456dbc66e.jpg ZR75Cy1g/e46c0714-8c5d-44bd-a0c0-33a0ada46c30.jpg ZR75CyGS/f9a22662-283b-49ea-8fdb-c8682dba4b07.jpg`)},
+{n:{ar:'مشروع حطين',en:'Hittin Project'},c:null,i:L(`RCWHwMXQ/1b952e49-c55b-4130-b635-23d25c60f4e8.jpg PNGhwb2n/2ab547c3-12ac-4f2b-b1b6-361e006b7db0.jpg t70yxd2p/39e4810a-2785-4855-8d38-ec61fb912a72.jpg V5y1C9D1/45b86074-03cd-43c7-885a-7dd4ad8e2b0e.jpg YjckWNbr/4837af35-fe28-4def-9195-dec00c2fb0a5.jpg LhdR1kvG/4d8727da-2b08-43b4-85a9-9d635f8703ee.jpg 7bvD21my/4daf386b-b5ef-4525-b9e0-024fe0ff7a18.jpg J0HM0Y32/50a33421-26e0-4782-918a-99100b971249.jpg pyNxFQkS/5fbf08f8-bcdf-4850-888b-2d9bed8ef77b.jpg tRsxFX2V/61ea3f5d-f3ab-4839-a9d8-0f0425d3ae9e.jpg HWrybpBM/72b4fe25-de45-4aa1-9c1b-df586f842b74.jpg RCWHwMXc/7549b7a6-5d42-4483-ba56-e9eb41bb2c89.jpg nVXDqH04/7687fd03-6bb8-4059-9853-0be4cad37fb8.jpg Sj0qMLVt/7d217678-9f28-4c73-b791-5b351f4950d0.jpg gr9dZyNJ/946cc2f3-7a09-4419-8ff3-2225d531210f.jpg 5jc1C5nx/a83e280b-3b61-4f2c-abe1-20e8334773e2.jpg 5jc1C5nV/b26692dc-62d4-4c15-8213-0eb10e761fdf.jpg mZPH7b8w/d15fdef3-c92b-454e-a252-50a7f7f73929.jpg yWqBZhnp/d6b50884-1d09-40bd-a983-9e80e1c44a64.jpg gcxZ3YNK/db14102c-57d1-439b-979d-60dcbe0cc608.jpg jCVK76Zd/e1abe03e-3197-45ee-b02b-a69232619922.jpg rz6crGgP/e5b983c0-d344-49ac-98f7-04d87edde9b5.jpg t70yxd20/f89a3481-8811-4866-8cec-7b51f8dcf85b.jpg`)},
+{n:{ar:'فلل خاصة متفرقة',en:'Private Villas'},c:{ar:'عظم وتشطيب',en:'Structure & Finishing'},i:L(`tCh7z7PW/10311547-cd4d-481e-a3ee-64626e6d3c12.jpg tC0YPF1x/14eb9dfc-772e-4a1d-8e4e-a7db7cf57c40.jpg QdhCYsJZ/150bdcb6-fad5-4fe9-9b02-8e4358cc594e.jpg hP9h0hx5/2a4b6adf-a0bd-4ab8-a9ba-925b75df00f2.jpg 52byK1S9/39dc4e86-2c1a-4cea-8aa4-c4238e266c09.jpg Ghk9j9YS/39f3b915-94cf-4087-b1f3-317440b2be89.jpg JzM0YmcP/3f9233e9-2e2a-4223-bd0b-cc75a5a483f7.jpg Fsj1x1cy/5c7c81ff-8159-49e2-bf16-70cc7a416ce0.jpg 8PhsbsW9/62584b93-6c93-41bb-99c1-b134344c999e.jpg GmdtgrJW/69b39911-6695-4b6a-8971-d00fbecf2c74.jpg ncvM1M71/75d12dee-c501-43ba-b710-f5c973c1c57f.jpg 02prCrmr/81b632b2-00a0-4307-9129-be7568cbb0e6.jpg hP9h0hx9/8946f7b3-c879-4935-86a1-fc85db0cdc9e.jpg SxkR1qf0/8bd5242f-7de6-4209-87ec-388844652793.jpg 02prCrmn/9da839d1-23fb-400e-be7a-42efca491e14.jpg XY4q13kv/b48f8bcc-ae30-4783-9ffb-2de116937d82.jpg 15p4K46v/b63c906e-f79f-45b4-8409-6aabc221cc6f.jpg Dyqmcmsb/b85a0a87-358c-42bb-b24e-245c4d2e19ef.jpg nhprSZYg/b867a19a-5f66-411a-9c52-2aaa63e7e8c8.jpg c4Q6c6YD/bb134a4d-15b1-4e73-97d5-d3dabdba9afa.jpg Z54nsZxZ/c2fc160e-ba03-47ea-84a7-71ff0bbbb2c4.jpg 7YgbNb7X/d31b48ae-0d74-435a-afab-9b88c83f967b.jpg 13sX7PrX/d3ba0484-caa2-4a1b-bd07-adc25365327d.jpg qv4qD0XF/e54182f6-5f6a-4c34-8ade-7d49a15ffeeb.jpg X7wXgXFk/fe3697ac-43bb-4caa-b799-a7cdc6d976fe.jpg`)},
+{n:{ar:'مشروع فلل الفوزان الرحاب',en:'Al Fozan Villas – Al Rehab'},c:null,i:L(`13vmWFzf/0369fc75-767f-444b-a834-0a56132945fd.jpg 2S0kHW53/1a47e2e9-e492-4559-a7d7-e5a07e8ef7ec.jpg jSxqQcR5/3d5a24b4-ff08-4e02-adaa-d3343fd92d2e.jpg T3tdkbPY/50d57ba6-6874-4e79-9b49-f72563e6c725.jpg Z5wbfNqp/57b21ee0-c72a-44d5-adca-d4765fac4cd8.jpg Z5wbfNqB/5a89b532-ba36-4f2b-b38b-a8edbaa2bed1.jpg 13vmWFzG/62026df6-8894-4094-897a-dfda14d1d352.jpg 4xWf8c3B/8baab43e-c993-4b92-8072-16ccbef5ac2c.jpg dV5sWC0T/a2d559a9-a817-45ef-b277-6d46f5461ae7.jpg qvJBXwpC/d67b0262-e496-47d4-925f-f30633156710.jpg vZ0YPnmt/f27edb94-7854-476a-ad1a-ecb14a3ae6e9.jpg`)}
 ];
 
-/* icons (Iconsax-style linear, inline) */
+/* translations */
+const I={
+en:{skip:'Skip',kingdom:'Kingdom of Saudi Arabia',kingdom2:'Kingdom of Saudi Arabia',
+h1:'We Illuminate Your Vision <em>with Unmatched Craftsmanship</em>',
+heroP:'Electromechanical works, interiors and fully integrated engineering projects, from concept to handover.',
+btn1:'View Our Projects',btn2:'Contact Us',
+dashT:'Company at a Glance',dashP:'Key performance indicators that reflect our track record.',
+svcT:'Our Services',svcP:'Everything your project needs under one roof.',
+projT:'Projects Defined by Quality and Precision',projP:'Click any project to view its photos and details.',
+hint:'Swipe left or right to browse projects',photos:'photos',
+ctT:'Have a Project in Mind?',ctP:'We would be glad to discuss your project and provide the guidance needed to make it a success.',
+phone:'PHONE',loc:'LOCATION',locV:'Kingdom of Saudi Arabia',
+fAbout:'Electromechanical works, interiors and integrated engineering projects delivered across the Kingdom.',
+fLinks:'Quick Links',fContact:'Contact',dev:'Website developed by',
+rights:'© 2026 Emaar Horizons. All rights reserved.',
+nav:['Home','About Our Projects','Electromechanical','Projects','Catalogue','Decorations','Team','Contact'],
+k:['Years of Experience','Projects Completed','Trusted Clients','Support & Maintenance'],
+s:[['Electromechanical Works','Installation, wiring and maintenance'],['Interior Decoration','Design and execution'],['Structure & Finishing','From foundation to handover'],['Maintenance & Support','Round-the-clock follow-up']],
+cap:'Active',words:['Precision.','Craftsmanship.','Excellence.'],ready:'Are you ready to see',other:'عربي'},
+ar:{skip:'تخطي',kingdom:'المملكة العربية السعودية',kingdom2:'المملكة العربية السعودية',
+h1:'نضيء رؤيتك <em>بحرفية لا مثيل لها</em>',
+heroP:'أعمال كهروميكانيكية وديكورات ومشاريع هندسية متكاملة، من الفكرة حتى التسليم.',
+btn1:'شاهد مشاريعنا',btn2:'تواصل معنا',
+dashT:'نظرة سريعة على الشركة',dashP:'مؤشرات الأداء الرئيسية التي تعكس سجل أعمالنا.',
+svcT:'خدماتنا',svcP:'كل ما يحتاجه مشروعك تحت سقف واحد.',
+projT:'مشاريع تتميز بالجودة والإتقان',projP:'اضغط على أي مشروع لعرض صوره وتفاصيله.',
+hint:'اسحب يمين أو يسار لتصفح المشاريع',photos:'صورة',
+ctT:'هل لديك مشروع في ذهنك؟',ctP:'نسعد بمناقشة تفاصيل مشروعك وتقديم الاستشارة اللازمة لإنجاحه.',
+phone:'الهاتف',loc:'الموقع',locV:'المملكة العربية السعودية',
+fAbout:'أعمال كهروميكانيكية وديكورات ومشاريع هندسية متكاملة في أنحاء المملكة.',
+fLinks:'روابط سريعة',fContact:'تواصل',dev:'تطوير الموقع بواسطة',
+rights:'© 2026 إعمار هورايزونز — جميع الحقوق محفوظة',
+nav:['الرئيسية','نبذة عن مشاريعنا','إلكتروميكانيك','مشاريع','الكتالوج','ديكورات','فريق العمل','تواصل معنا'],
+k:['سنوات من الخبرة','مشروع منجز','عميل يثق بنا','دعم وصيانة'],
+s:[['أعمال كهروميكانيكية','تمديدات وتركيب وصيانة'],['ديكورات','تصميم وتنفيذ داخلي'],['عظم وتشطيب','من الأساس حتى التسليم'],['صيانة ودعم','متابعة على مدار الساعة']],
+cap:'نشط',words:['دقة.','حرفية.','إتقان.'],ready:'هل أنت جاهز لرؤية',other:'English'}
+};
+let lang='en';try{lang=localStorage.getItem('lang')||'en'}catch(e){}
+
 const P={
 menu:'<path d="M3 7h18M3 12h18M3 17h12"/>',close:'<path d="M18 6L6 18M6 6l12 12"/>',
 home:'<path d="M3 11l9-8 9 8M5 9.5V20h14V9.5M10 20v-5h4v5"/>',
 info:'<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5M12 8h.01"/>',
 bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/>',
 build:'<path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1"/>',
-brush:'<path d="M4 20c3 0 4-1.5 4-3a2.5 2.5 0 00-2.5-2.5C4 14.5 4 16 4 17s0 3 0 3zM8.500 14.500L20 3l1 1-11.500 11.500"/>',
-people:'<circle cx="9" cy="8" r="3.200"/><path d="M2.500 20c0-3.500 3-5.500 6.500-5.500s6.500 2 6.500 5.500M16 5a3 3 0 010 6M18 14.800c2 .7 3.500 2.200 3.500 4.700"/>',
-call:'<path d="M22 16.920v3a2 2 0 01-2.180 2 19.790 19.790 0 01-8.630-3.070 19.500 19.500 0 01-6-6A19.790 19.790 0 012.120 4.180 2 2 0 014.110 2h3a2 2 0 012 1.720c.130 1 .380 1.900.700 2.810a2 2 0 01-.450 2.110L8.090 9.910a16 16 0 006 6l1.270-1.270a2 2 0 012.110-.450c.910.320 1.850.570 2.810.700A2 2 0 0122 16.920z"/>',
-cal:'<path d="M8 2v3M16 2v3M3.500 9h17M21 8.500V17c0 3-1.500 5-5 5H8c-3.500 0-5-2-5-5V8.500c0-3 1.500-5 5-5h8c3.500 0 5 2 5 5z"/><path d="M8 14l2.500 2.500L16 12"/>',
-check:'<circle cx="12" cy="12" r="9.500"/><path d="M8 12.500l2.800 2.800L16.500 9.500"/>',
-support:'<path d="M3 15v-3a9 9 0 0118 0v3"/><path d="M3 15.500C3 14.100 4 13 5.200 13H6v6h-.8C4 19 3 17.400 3 15.500zM21 15.500c0-1.400-1-2.500-2.200-2.500H18v6h.8c1.200 0 2.200-1.600 2.200-3.500z"/>',
-gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900L7 7M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/>',
+brush:'<path d="M4 20c3 0 4-1.5 4-3a2.5 2.5 0 00-2.5-2.5C4 14.5 4 16 4 17s0 3 0 3zM8.5 14.5L20 3l1 1-11.500 11.500"/>',
+people:'<circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.5 3-5.500 6.500-5.500s6.500 2 6.500 5.500M16 5a3 3 0 010 6M18 14.8c2 .7 3.500 2.200 3.500 4.700"/>',
+call:'<path d="M22 16.92v3a2 2 0 01-2.180 2 19.790 19.790 0 01-8.630-3.070 19.500 19.500 0 01-6-6A19.790 19.790 0 012.120 4.180 2 2 0 014.110 2h3a2 2 0 012 1.720c.130 1 .380 1.900.700 2.810a2 2 0 01-.450 2.110L8.090 9.910a16 16 0 006 6l1.270-1.270a2 2 0 012.110-.450c.910.320 1.850.570 2.810.700A2 2 0 0122 16.920z"/>',
+gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.100 2.100M4.9 19.100L7 17M17 7l2.100-2.100"/>',
 arrows:'<path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/>'};
 const ic=n=>`<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
+const EMB='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8v30"/><path d="M32 14c-6-6-14-4-18 0M32 14c6-6 14-4 18 0M32 21c-6-5-12-3-15 1M32 21c6-5 12-3 15 1M32 28c-4-3-9-2-11 1M32 28c4-3 9-2 11 1"/><path d="M10 40l42 18M54 40L12 58"/></svg>';
 const $=id=>document.getElementById(id);
+const NAVI=[['/','home'],['/nabza','info'],['/electro','bolt'],['#projects','build'],['#catalogue','info'],['/decorations','brush'],['/team','people'],['#contact','call']];
+$('emb1').innerHTML=EMB;$('emb2').innerHTML=EMB;
+$('burger').innerHTML=ic('menu');$('dx').innerHTML=ic('close');$('fab').innerHTML=ic('call');$('harr').innerHTML=ic('arrows');
 
-/* nav + mobile drawer */
-const NAV=[['/','الرئيسية','home'],['/nabza','نبذة عن مشاريعنا','info'],['/electro','إلكتروميكانيك','bolt'],['#projects','مشاريع','build'],['#catalogue','الكتالوج','info'],['/decorations','ديكورات','brush'],['/team','فريق العمل','people'],['#contact','تواصل معنا','call']];
-$('links').innerHTML=NAV.map(l=>`<li><a href="${l[0]}">${l[1]}</a></li>`).join('');
-$('drawer').insertAdjacentHTML('beforeend',NAV.map((l,k)=>`<a href="${l[0]}" style="transition-delay:${.08+k*.05}s"><span class="ic">${ic(l[2])}</span>${l[1]}</a>`).join(''));
-$('burger').innerHTML=ic('menu');$('dx').innerHTML=ic('close');$('fab').innerHTML=ic('call');$('hint').innerHTML=ic('arrows')+'اسحب يمين أو يسار لتصفح المشاريع';
+/* static dashboard markup */
+const KP=[[8,.8,'dk'],[17,.85,''],[350,.875,'dk'],[0,1,'']];
+$('kpis').innerHTML=KP.map((k,i)=>`<div class="kpi ${k[2]} rv stag${i}"><div class="k-top"><span>KPI 0${i+1}</span><span class="live" data-t="cap"></span></div><div class="k-mid"><div class="k-num" ${k[0]?`data-to="${k[0]}">+0`:'>24/7'}</div><div class="ring"><span class="orb"></span><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42" data-p="${k[1]}"/></svg></div></div><div class="k-lbl" data-k="${i}"></div><div class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>`).join('');
+const SV=[['bolt',95],['brush',90],['build',92],['gear',100]];
+$('svc').innerHTML=SV.map((s,i)=>`<div class="row rv stag${i%4}"><span class="ic">${ic(s[0])}</span><div><h3 data-s="${i}0"></h3><small data-s="${i}1"></small></div><div class="meter"><b data-w="${s[1]}"></b></div><div class="pct" data-pc="${s[1]}">0%</div></div>`).join('');
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const t=e.target;t.classList.add('in');
+  const n=t.querySelector('[data-to]');
+  if(n){const to=+n.dataset.to,t0=performance.now();(function f(x){const p=Math.min((x-t0)/1800,1);n.textContent='+'+Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+  const r=t.querySelector('.fg');if(r)r.style.strokeDashoffset=264*(1-r.dataset.p);
+  const m=t.querySelector('[data-w]');
+  if(m){m.style.width=m.dataset.w+'%';const pc=t.querySelector('[data-pc]'),to=+pc.dataset.pc,t0=performance.now();(function f(x){const p=Math.min((x-t0)/2000,1);pc.textContent=Math.round(to*(1-Math.pow(1-p,3)))+'%';if(p<1)requestAnimationFrame(f)})(t0)}
+  io.unobserve(t)}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* language */
 const drawer=$('drawer'),setD=o=>{drawer.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''};
+const card=(p,k)=>`<button class="card" data-k="${k}"><div class="ph"><img src="${p.i[0]}" alt="${p.n[lang]}" loading="lazy" draggable="false"/></div><h3>${p.n[lang]}</h3><small>${p.c?p.c[lang]:p.i.length+' '+I[lang].photos}</small></button>`;
+const track=$('track');
+function setLang(l){
+  lang=l;try{localStorage.setItem('lang',l)}catch(e){}
+  const T=I[l],h=document.documentElement;
+  h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-t]').forEach(el=>{el.textContent=T[el.dataset.t]});
+  $('h1').innerHTML=T.h1;$('rights').textContent=T.rights;
+  document.querySelectorAll('[data-k]:not(.card)').forEach(el=>el.textContent=T.k[el.dataset.k]);
+  document.querySelectorAll('[data-s]').forEach(el=>el.textContent=T.s[el.dataset.s[0]][el.dataset.s[1]]);
+  $('links').innerHTML=T.nav.map((x,i)=>`<li><a href="${NAVI[i][0]}">${x}</a></li>`).join('');
+  $('flinks').innerHTML=T.nav.map((x,i)=>`<li><a href="${NAVI[i][0]}">${x}</a></li>`).join('');
+  drawer.querySelectorAll('a').forEach(a=>a.remove());
+  drawer.insertAdjacentHTML('beforeend',T.nav.map((x,i)=>`<a href="${NAVI[i][0]}" style="transition-delay:${.08+i*.05}s"><span class="ic">${ic(NAVI[i][1])}</span>${x}</a>`).join(''));
+  $('lang1').textContent=T.other;
+  const set=projects.map(card).join('');track.innerHTML=set+set+set;
+  $('m-prev').textContent=l==='ar'?'›':'‹';$('m-next').textContent=l==='ar'?'‹':'›';
+  document.title=l==='ar'?'إعمار هورايزونز | Emaar Horizons':'Emaar Horizons | إعمار هورايزونز';
+  setTimeout(measure,50);
+  if(cur){$('m-title').textContent=cur.n[lang];subtitle()}
+}
+$('lang1').onclick=()=>setLang(lang==='en'?'ar':'en');
 $('burger').onclick=()=>setD(true);$('dx').onclick=()=>setD(false);
 drawer.addEventListener('click',e=>{if(e.target.closest('a'))setD(false)});
 
-/* stats + services squares */
-const STATS=[['cal',8,'سنوات من الخبرة'],['check',17,'مشروع منجز'],['people',350,'عميل يثق بنا'],['support',0,'دعم وصيانة']];
-$('stats').innerHTML=STATS.map((s,k)=>`<div class="sq dark rv stag${k}"><span class="ic">${ic(s[0])}</span><b ${s[1]?`data-to="${s[1]}">+0`:'>24/7'}</b><span class="t">${s[2]}</span></div>`).join('');
-const SVC=[['bolt','أعمال كهروميكانيكية','تمديدات وتركيب وصيانة'],['brush','ديكورات','تصميم وتنفيذ داخلي'],['build','عظم وتشطيب','من الأساس حتى التسليم'],['gear','صيانة ودعم','متابعة على مدار الساعة']];
-$('svc').innerHTML=SVC.map((s,k)=>`<div class="sq rv stag${k}"><span class="ic">${ic(s[0])}</span><h3>${s[1]}</h3><span class="t">${s[2]}</span></div>`).join('');
-const io=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting)return;
-  e.target.classList.add('in');
-  const n=e.target.querySelector('[data-to]');
-  if(n){const to=+n.dataset.to,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1800,1);n.textContent='+'+Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
-  io.unobserve(e.target)}),{threshold:.2});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-/* marquee: seamless loop, drag/swipe left or right, pauses on hover */
-const track=$('track'),mq=$('marquee');
-const card=(p,k)=>`<button class="card" data-k="${k}"><div class="ph"><img src="${p.i[0]}" alt="${p.n}" loading="lazy" draggable="false"/></div><h3>${p.n}</h3><small>${p.c||p.i.length+' صورة'}</small></button>`;
-const set=projects.map(card).join('');
-track.innerHTML=set+set+set;
+/* marquee */
+const mq=$('marquee');
 let pos=0,v=0,dir=-1,hover=false,setW=0,drag=false,moved=0,sx=0,sp=0,lx=0,vel=0;
 const measure=()=>setW=track.scrollWidth/3;
-addEventListener('load',measure);addEventListener('resize',measure);measure();
+addEventListener('load',measure);addEventListener('resize',measure);
 mq.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hover=true});
 mq.addEventListener('pointerleave',()=>hover=false);
 mq.addEventListener('pointerdown',e=>{drag=true;moved=0;sx=lx=e.clientX;sp=pos;vel=0});
@@ -295,37 +415,52 @@ const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* modal */
 let cur=null,idx=0;
+const subtitle=()=>$('m-sub').textContent=(cur.c?cur.c[lang]+' · ':'')+cur.i.length+' '+I[lang].photos;
 function show(i){
   idx=(i+cur.i.length)%cur.i.length;
-  $('m-img').src=cur.i[idx];$('m-img').alt=cur.n;
+  $('m-img').src=cur.i[idx];$('m-img').alt=cur.n[lang];
   [...$('m-thumbs').children].forEach((t,j)=>t.classList.toggle('on',j===idx));
   $('m-thumbs').children[idx].scrollIntoView({inline:'center',block:'nearest'});
 }
 function openP(k){
-  cur=projects[k];
-  $('m-title').textContent=cur.n;
-  $('m-sub').textContent=(cur.c?cur.c+' · ':'')+cur.i.length+' صورة';
+  cur=projects[k];$('m-title').textContent=cur.n[lang];subtitle();
   $('m-thumbs').innerHTML=cur.i.map((s,j)=>`<img src="${s}" alt="" data-j="${j}" loading="lazy"/>`).join('');
   $('modal').classList.add('open');document.body.style.overflow='hidden';show(0);
 }
 function closeP(){$('modal').classList.remove('open');document.body.style.overflow=''}
 track.addEventListener('click',e=>{if(moved>6)return;const c=e.target.closest('.card');if(c)openP(c.dataset.k%projects.length)});
 $('m-thumbs').addEventListener('click',e=>{if(e.target.dataset.j)show(+e.target.dataset.j)});
+const rtl=()=>document.documentElement.dir==='rtl';
 $('m-next').onclick=()=>show(idx+1);$('m-prev').onclick=()=>show(idx-1);$('m-close').onclick=closeP;
 $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeP()});
 addEventListener('keydown',e=>{if(e.key==='Escape')setD(false);if(!cur||!$('modal').classList.contains('open'))return;
-  if(e.key==='Escape')closeP();if(e.key==='ArrowLeft')show(idx+1);if(e.key==='ArrowRight')show(idx-1)});
+  if(e.key==='Escape')closeP();
+  if(e.key==='ArrowRight')show(idx+(rtl()?-1:1));if(e.key==='ArrowLeft')show(idx+(rtl()?1:-1))});
 
-/* scroll: solid nav, progress bar, hero parallax */
+/* scroll */
 const nav=$('nav'),bar=$('bar'),hero=$('hero');
 addEventListener('scroll',()=>{
   nav.classList.toggle('solid',scrollY>60);
   bar.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
   if(scrollY<innerHeight)hero.style.backgroundPositionY=`calc(50% + ${scrollY*0.25}px)`;
 });
-/* preloader */
-const hide=()=>$('pre').classList.add('gone');
-addEventListener('load',()=>setTimeout(hide,350));setTimeout(hide,3000);
+
+/* cinematic intro */
+setLang(lang);
+const intro=$('intro');let fin=false;
+function finish(){if(fin)return;fin=true;intro.classList.add('open');document.body.classList.add('go');setTimeout(()=>{intro.classList.add('done');document.body.style.overflow=''},1300)}
+if(still){intro.classList.add('done');document.body.classList.add('go')}
+else{
+  document.body.style.overflow='hidden';
+  const T=I[lang];
+  $('i-stage').innerHTML=T.words.map((w,k)=>`<span class="w" style="animation-delay:${.3+k*.85}s">${w}</span>`).join('');
+  $('i-q').textContent=T.ready;
+  const t1=.3+T.words.length*.85+.9;
+  setTimeout(()=>intro.classList.add('pull'),t1*1000);
+  setTimeout(()=>intro.classList.add('ready'),t1*1000+700);
+  setTimeout(finish,t1*1000+3000);
+  $('skip').onclick=finish;
+}
 </script>
 </body>
 </html>
