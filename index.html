@@ -75,6 +75,7 @@ svg.i{width:1em;height:1em;display:block}
 .rv{opacity:0;transform:translateY(34px) scale(.96);transition:opacity .8s var(--ease),transform .8s var(--ease),box-shadow .5s,background .4s,color .4s}
 .rv.in{opacity:1;transform:none}
 .rv.in:hover{transform:translateY(-10px) rotate(-1.5deg)}
+.head.rv.in:hover{transform:none}
 .stag1{transition-delay:.08s}.stag2{transition-delay:.16s}.stag3{transition-delay:.24s}
 /* projects */
 #projects{padding:90px 0 100px}
@@ -97,6 +98,13 @@ svg.i{width:1em;height:1em;display:block}
 .hint{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--mid);font-size:.88rem;margin-top:6px}
 .hint svg{font-size:20px;color:var(--green);animation:sway 1.6s ease-in-out infinite}
 @keyframes sway{50%{transform:translateX(8px)}}
+/* catalogue */
+#catalogue{padding:90px 6% 100px;background:#fff}
+#catalogue .head{margin-inline:auto;text-align:center}
+#catalogue .head h2::after{margin-inline:auto}
+.cat-wrap{max-width:960px;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;border:1px solid rgba(124,58,237,.14);box-shadow:0 30px 70px rgba(124,58,237,.18)}
+.cat-wrap img{display:block;width:100%;height:auto}
+@media(max-width:700px){#catalogue{padding:60px 4% 70px}.cat-wrap{border-radius:14px}}
 /* modal */
 #modal{position:fixed;inset:0;z-index:100;display:none;background:rgba(8,6,14,.95);color:#fff;flex-direction:column;padding:22px 5% 18px}
 #modal.open{display:flex;animation:fade .3s}
@@ -166,6 +174,29 @@ footer .tel{direction:ltr;font:700 .95rem 'Montserrat',sans-serif;color:#fff;pad
   <div class="hint" id="hint"></div>
 </section>
 
+<section id="catalogue">
+  <div class="head rv">
+    <h2>كتالوج إعمار هورايزونز</h2>
+    <p>تصفح الكتالوج كاملًا بالسكرول لأسفل.</p>
+  </div>
+  <div class="cat-wrap">
+    <img src="catalogue/part-01.jpg" alt="كتالوج إعمار هورايزونز - جزء 1" width="1200" height="4000" decoding="async"/>
+    <img src="catalogue/part-02.jpg" alt="كتالوج إعمار هورايزونز - جزء 2" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-03.jpg" alt="كتالوج إعمار هورايزونز - جزء 3" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-04.jpg" alt="كتالوج إعمار هورايزونز - جزء 4" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-05.jpg" alt="كتالوج إعمار هورايزونز - جزء 5" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-06.jpg" alt="كتالوج إعمار هورايزونز - جزء 6" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-07.jpg" alt="كتالوج إعمار هورايزونز - جزء 7" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-08.jpg" alt="كتالوج إعمار هورايزونز - جزء 8" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-09.jpg" alt="كتالوج إعمار هورايزونز - جزء 9" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-10.jpg" alt="كتالوج إعمار هورايزونز - جزء 10" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-11.jpg" alt="كتالوج إعمار هورايزونز - جزء 11" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-12.jpg" alt="كتالوج إعمار هورايزونز - جزء 12" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-13.jpg" alt="كتالوج إعمار هورايزونز - جزء 13" width="1200" height="4000" loading="lazy" decoding="async"/>
+    <img src="catalogue/part-14.jpg" alt="كتالوج إعمار هورايزونز - جزء 14" width="1200" height="4040" loading="lazy" decoding="async"/>
+  </div>
+</section>
+
 <div id="modal" role="dialog" aria-modal="true">
   <div class="m-top"><div><h3 id="m-title"></h3><p id="m-sub"></p></div><button class="x" id="m-close" aria-label="إغلاق">✕</button></div>
   <div class="stage"><button class="nv" id="m-next" aria-label="التالي">›</button><img id="m-img" alt=""/><button class="nv" id="m-prev" aria-label="السابق">‹</button></div>
@@ -218,7 +249,7 @@ const ic=n=>`<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor
 const $=id=>document.getElementById(id);
 
 /* nav + mobile drawer */
-const NAV=[['/','الرئيسية','home'],['/nabza','نبذة عن مشاريعنا','info'],['/electro','إلكتروميكانيك','bolt'],['#projects','مشاريع','build'],['/decorations','ديكورات','brush'],['/team','فريق العمل','people'],['#contact','تواصل معنا','call']];
+const NAV=[['/','الرئيسية','home'],['/nabza','نبذة عن مشاريعنا','info'],['/electro','إلكتروميكانيك','bolt'],['#projects','مشاريع','build'],['#catalogue','الكتالوج','info'],['/decorations','ديكورات','brush'],['/team','فريق العمل','people'],['#contact','تواصل معنا','call']];
 $('links').innerHTML=NAV.map(l=>`<li><a href="${l[0]}">${l[1]}</a></li>`).join('');
 $('drawer').insertAdjacentHTML('beforeend',NAV.map((l,k)=>`<a href="${l[0]}" style="transition-delay:${.08+k*.05}s"><span class="ic">${ic(l[2])}</span>${l[1]}</a>`).join(''));
 $('burger').innerHTML=ic('menu');$('dx').innerHTML=ic('close');$('fab').innerHTML=ic('call');$('hint').innerHTML=ic('arrows')+'اسحب يمين أو يسار لتصفح المشاريع';
