@@ -83,7 +83,8 @@ html[lang=ar] #i-ready p{letter-spacing:0;text-transform:none;font-weight:500}
 .hero-in,.scroll{z-index:2}
 #hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,6,45,.85) 0%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.4) 100%)}
 .hero-in{position:relative;padding:0 6% 9vh;max-width:800px}
-.hero-in h1{font-weight:900;font-size:clamp(2rem,5vw,3.9rem);line-height:1.2;margin-bottom:18px}
+@font-face{font-family:'ThmanyahH';font-weight:400 600;font-display:swap;src:local('Thmanyah Sans'),local('ThmanyahSans'),local('Thmanyah Sans Regular'),local('Thmanyah Sans Medium'),url('fonts/ThmanyahSans-Medium.otf') format('opentype'),url('fonts/ThmanyahSans.otf') format('opentype')}
+.hero-in h1{font-family:'ThmanyahH','Thmanyah Sans','Tajawal',sans-serif;font-weight:500;font-size:clamp(2rem,4.8vw,3.7rem);line-height:1.4;letter-spacing:0;margin-bottom:20px;text-shadow:0 4px 28px rgba(0,0,0,.45)}
 .hero-in h1 em{font-style:normal;background:linear-gradient(90deg,#c4b5fd,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-in p{font-weight:300;font-size:1.05rem;max-width:540px;color:rgba(255,255,255,.88);margin-bottom:30px}
 body.go .hero-in{animation:up 1s .3s var(--ease) both}
