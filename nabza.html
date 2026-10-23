@@ -105,7 +105,7 @@ html[dir=ltr] .f-qrimg{order:-1}
 .f-co span b{font-weight:400}
 .f-co span{display:flex;flex-wrap:wrap;gap:4px 28px}
 .f-co span i{display:none}
-@media(max-width:800px){.f-main{grid-template-columns:1fr}.f-info{grid-template-columns:1fr;padding:6px 0 24px}.ct-i,.ct-i:first-child{padding:12px 0}.f-co{gap:0;padding:8px 10px;width:auto;max-width:none;margin:0 6% 20px;text-align:center;justify-content:center}.f-co strong{font-size:.82rem;margin-bottom:3px}.f-co-t{width:100%}.f-co strong{font-size:.9rem}.f-co span{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:.78rem;line-height:1.7}.f-co span a,.f-co span b{display:block}.f-qrimg{width:132px;height:132px}}
+@media(max-width:800px){.f-main{grid-template-columns:1fr}.f-info{grid-template-columns:1fr;padding:6px 0 24px}.ct-i,.ct-i:first-child{padding:12px 0}.f-co{gap:0;padding:10px 12px;width:auto;max-width:none;margin:0 4% 20px;text-align:start;justify-content:flex-start}.f-co-t{width:100%;min-width:0}.f-co strong{white-space:nowrap;font-size:.95rem;margin-bottom:6px}.f-co span{display:flex;flex-wrap:nowrap;white-space:nowrap;justify-content:flex-start;align-items:center;gap:0;font-size:.8rem;line-height:1.5}.f-co span a,.f-co span b{display:inline}.f-co span i{display:inline;margin:0 7px}.f-qrimg{width:132px;height:132px}}
 /* compact formal mobile menu (right side) */
 #scrim{position:fixed;inset:0;z-index:119;background:rgba(8,6,20,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .4s}
 #scrim.open{opacity:1;pointer-events:auto}
@@ -548,6 +548,10 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
 function onLang(){if(curP)renderModal()}
 
 setLang(lang);
+</script>
+<script>
+(function(){function fit(){document.querySelectorAll('.f-co strong,.f-co span').forEach(function(e){e.style.fontSize='';if(innerWidth>800)return;var fs=parseFloat(getComputedStyle(e).fontSize);while(e.scrollWidth>e.clientWidth+1&&fs>6.5){fs-=.25;e.style.fontSize=fs+'px'}})}
+addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);fit()})();
 </script>
 </body>
 </html>
