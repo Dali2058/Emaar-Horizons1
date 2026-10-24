@@ -373,6 +373,27 @@ html[dir=ltr] .arr.p svg,html[dir=rtl] .arr.n svg{transform:scaleX(-1)}
 .lbn.a{left:16px}.lbn.b{right:16px}
 .pgap{height:50px}
 
+/* nav + hero overrides synced with home page */
+#nav{height:96px}
+.brand img{height:80px}
+.sep{height:44px}
+.ksa .b{width:44px;height:44px}
+@media(max-width:1250px){.brand img{height:64px}.sep{height:36px}.ksa .b{width:38px;height:38px}}
+@media(max-width:600px){#nav{height:80px}.brand{gap:8px}.brand img{height:52px}.sep{height:30px}.ksa .b{width:32px;height:32px;padding:6px}}
+/* Keep the company logo fully inside the navigation on both language directions */
+#nav{padding-inline:3%;min-width:0}
+.brand{min-width:0;max-width:42%;gap:10px}
+.brand>a{display:flex;align-items:center;min-width:0;max-width:100%}
+.brand img{display:block;width:auto;height:clamp(42px,5.2vw,64px);max-width:min(28vw,230px);object-fit:contain}
+html[dir="rtl"] #nav{padding-right:3%;padding-left:4%}
+html[dir="ltr"] #nav{padding-left:3%;padding-right:4%}
+@media(max-width:1000px){.brand{max-width:58%}.brand img{max-width:min(30vw,190px)}#nav{gap:8px}.nr{flex:none}}
+@media(max-width:600px){#nav{padding-inline:12px}.brand{max-width:65%;gap:7px}.brand img{height:48px;max-width:34vw}.ksa{gap:5px}.ksa .b{width:30px;height:30px;padding:5px}.sep{height:26px}}
+
+html[lang=ar] .hero-in{padding-bottom:max(2.5vh,.9rem)}
+html[lang=ar] .hero-in p{margin-bottom:22px}
+@media(max-width:600px){.hero-in .btn{padding:10px 15px;font-size:.76rem;white-space:nowrap;box-shadow:0 6px 18px rgba(124,58,237,.3)}.hero-in .btn.ghost{margin-inline-start:6px}.hero-in p{margin-bottom:18px}}
+
 </style>
 </head>
 <body>
@@ -446,9 +467,9 @@ const B='https://i.postimg.cc/';
 let lang='ar';try{lang=localStorage.getItem('lang')||'ar'}catch(e){}
 const I={
 ar:{title:'إلكتروميكانيك | إعمار هورايزونز',kingdom:'المملكة العربية السعودية',kingdom2:'المملكة العربية السعودية',
-h1:'إعمار هورايزونز <em>لأعمال الكهرباء</em><br>تأسيس وتشطيب متكامل',
+h1:'كهرباء <em>تأسيس وتشطيب متكامل</em>',
 heroP:'تأسيس وتشطيب كهرباء من الاستلام حتى التسليم، مع التزام تام بالمواعيد المحددة.',
-btn1:'استعرض أعمالنا',btn2:'تواصل معنا',
+btn1:'شاهد مشاريعنا',btn2:'تواصل معنا',
 b1t:'الفكرة',
 b1p1:'نحن شركة لأعمال الكهرباء تأسيس وتشطيب نستلم الموقع من البداية الى التسليم كما نستلم ملحقات مواقع اهم ما يميزنا التسليم دائما في المواعيد المحدده متابعه الاعمال التي قامت بها الشركه في حاله طلب العميل لذلك. مجالتنا متفرعه في عالم الكهرباء.',
 b2t:'طبيعة العمل',
@@ -468,8 +489,8 @@ rights:'© 2026 إعمار هورايزونز — جميع الحقوق محفو
 nav:['الرئيسية','نبذة عن مشاريعنا','تشطيبات','ديكورات','إلكتروميكانيك','تواصل معنا']},
 en:{title:'Electromechanical | Emaar Horizons',kingdom:'Kingdom of Saudi Arabia',kingdom2:'Kingdom of Saudi Arabia',
 h1:'Electrical <em>Works</em><br>Complete Rough-in & Finishing',
-heroP:'Electrical rough-in and finishing from site handover to delivery, always on schedule.',
-btn1:'View Our Work',btn2:'Contact Us',
+heroP:'Electrical rough-in and finishing, from site handover to delivery, with full commitment to deadlines.',
+btn1:'View Our Projects',btn2:'Contact Us',
 b1t:'The Idea',
 b1p1:'We are an electrical works company covering rough-in and finishing. We take over the site from the very beginning to handover, and also handle site add-ons. What sets us apart is always delivering on the agreed dates, and following up on the work the company has done whenever the client requests it. Our fields branch out across the world of electricity.',
 b2t:'Nature of Work',
