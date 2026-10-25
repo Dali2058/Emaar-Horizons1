@@ -511,7 +511,7 @@ b3p5:'• طقم إشراف قوي لتنظيم حركة العمل.',
 s1:'صور تأسيس من بعض المواقع',s2:'فيديوهات تأسيس من مواقع',s3:'صور تسليم من بعض المواقع',s4:'فيديوهات تسليم من مواقع',vid:'شاهد الفيديو',
 fAbout:'مشاريع هندسية متكاملة عظم وبناء وإلكتروميكانيك وتشطيبات وديكورات',fLinks:'روابط سريعة',dev:'تطوير الموقع بواسطة',
 rights:'© 2026 إعمار هورايزونز — جميع الحقوق محفوظة',
-nav:['الرئيسية','نبذة عن مشاريعنا','تشطيبات','ديكورات','إلكتروميكانيك','تواصل معنا']},
+nav:['الرئيسية','نبذة عن مشاريعنا','تشطيبات','ديكورات','إلكتروميكانيك','فريق العمل','تواصل معنا']},
 en:{title:'Electromechanical | Emaar Horizons',kingdom:'Kingdom of Saudi Arabia',kingdom2:'Kingdom of Saudi Arabia',
 h1:'Electrical <em>Works</em><br>Complete Rough-in & Finishing',
 heroP:'Electrical rough-in and finishing, from site handover to delivery, with full commitment to deadlines.',
@@ -532,7 +532,7 @@ b3p5:'• A strong supervision crew to organize the flow of work.',
 s1:'Rough-in Photos from Selected Sites',s2:'Rough-in Videos from Sites',s3:'Handover Photos from Selected Sites',s4:'Handover Videos from Sites',vid:'Watch video',
 fAbout:'Integrated engineering projects: structure & construction, electromechanical, fit-out and decorations',fLinks:'Quick Links',dev:'Website developed by',
 rights:'© 2026 Emaar Horizons. All rights reserved.',
-nav:['Home','About Our Projects','Fit-out','Decorations','Electromechanical','Contact']}};
+nav:['Home','About Our Projects','Fit-out','Decorations','Electromechanical','Our Team','Contact']}};
 
 const P={
 menu:'<path d="M3 7h18M3 12h18M3 17h12"/>',close:'<path d="M18 6L6 18M6 6l12 12"/>',
@@ -559,7 +559,7 @@ function renderLang(){
 $('lang1').onclick=e=>{e.stopPropagation();$('lsel').classList.toggle('open')};
 $('lmenu').addEventListener('click',e=>{const b=e.target.closest('button');if(b){$('lsel').classList.remove('open');setLang(b.dataset.l)}});
 document.addEventListener('click',()=>$('lsel').classList.remove('open'));
-const NAVI=[['/','home'],['/nabza','info'],['fitout.html','build'],['decorations.html','brush'],['/electro','bolt'],['#contact','call']];
+const NAVI=[['/','home'],['/nabza','info'],['fitout.html','build'],['decorations.html','brush'],['/electro','bolt'],['team.html','people'],['#contact','call']];
 const drawer=$('drawer'),setD=o=>{drawer.classList.toggle('open',o);$('scrim').classList.toggle('open',o);document.body.style.overflow=o?'hidden':''};
 const CH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
 function nl(i){return `<li><a href="${NAVI[i][0]}" class="${i===4?'active':''}">${I[lang].nav[i]}</a></li>`}
