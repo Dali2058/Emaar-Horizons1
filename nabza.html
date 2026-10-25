@@ -401,6 +401,100 @@ html[lang=ar] .hero-in{padding-bottom:max(2.5vh,.9rem)}
 html[lang=ar] .hero-in p{margin-bottom:22px}
 @media(max-width:600px){.hero-in .btn{padding:10px 15px;font-size:.76rem;white-space:nowrap;box-shadow:0 6px 18px rgba(124,58,237,.3)}.hero-in .btn.ghost{margin-inline-start:6px}.hero-in p{margin-bottom:18px}}
 
+
+/* ===== featured projects: showcase ===== */
+#major{padding:80px 6% 60px;position:relative;overflow:hidden}
+#major::before,#major::after{content:'';position:absolute;border-radius:50%;pointer-events:none;filter:blur(8px);z-index:0}
+#major::before{width:560px;height:560px;top:120px;inset-inline-start:-220px;background:radial-gradient(circle,rgba(167,139,250,.30),transparent 70%);animation:blob 15s ease-in-out infinite alternate}
+#major::after{width:620px;height:620px;bottom:80px;inset-inline-end:-260px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);animation:blob 18s ease-in-out infinite alternate-reverse}
+@keyframes blob{to{transform:translate(70px,50px) scale(1.18)}}
+#major>*{position:relative;z-index:1}
+.pstats{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:-6px auto 70px}
+.pst{min-width:160px;padding:16px 28px;border-radius:22px;text-align:center;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(124,58,237,.2);box-shadow:0 14px 36px rgba(76,29,149,.12);transition:transform .4s var(--ease),box-shadow .4s}
+.pst:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(124,58,237,.25)}
+.pst b{display:block;font:800 2.1rem 'Montserrat',sans-serif;direction:ltr;line-height:1.2;background:linear-gradient(135deg,#4c1d95,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pst span{font-size:.85rem;color:var(--mid);font-weight:600}
+#plist{display:grid;gap:24px}
+.prow.hp{position:relative;margin-bottom:96px;opacity:0;transform:translateY(46px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.prow.hp.in{opacity:1;transform:none}
+.pvis{position:relative;perspective:1000px}
+.pvis .pimg{aspect-ratio:16/11;border-radius:28px;overflow:hidden;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s ease-out,clip-path 1.3s var(--ease),box-shadow .5s;clip-path:inset(0 0 100% 0 round 28px);box-shadow:0 26px 70px rgba(76,29,149,.28)}
+.prow.hp.in .pimg{clip-path:inset(0 0 0 0 round 28px)}
+.pvis:hover .pimg{box-shadow:0 34px 90px rgba(124,58,237,.42)}
+.pvis .pimg img{height:124%;margin-top:-12%;width:100%;object-fit:cover;display:block;scale:1.06;transform:translate3d(0,var(--py,0px),0);transition:scale 1.1s var(--ease);will-change:transform}
+.pvis:hover .pimg img{scale:1.16}
+.pvis .pimg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);transform:translateX(-130%);transition:transform 1.1s var(--ease);pointer-events:none}
+.pvis:hover .pimg::after{transform:translateX(130%)}
+.ptag{position:absolute;inset-inline:0;bottom:0;padding:60px 24px 20px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;color:#fff;background:linear-gradient(to top,rgba(20,8,48,.9),rgba(20,8,48,.5) 55%,transparent);pointer-events:none;z-index:2}
+.ptag b{font-weight:900;font-size:1.25rem;line-height:1.4;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.ptag b::after{content:'';display:block;height:3px;width:0;margin-top:8px;border-radius:3px;background:linear-gradient(90deg,#c4b5fd,#fff);transition:width 1s .7s var(--ease)}
+.prow.hp.in .ptag b::after{width:56px}
+.ptag small{flex:none;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:.78rem;font-weight:700}
+.pstack{position:absolute;bottom:-28px;inset-inline-end:-16px;display:flex;z-index:4}
+.pstack img{width:104px;height:78px;object-fit:cover;border-radius:16px;border:3px solid #fff;box-shadow:0 12px 28px rgba(76,29,149,.3);margin-inline-start:-26px;background:#ddd6fe;transform:rotate(var(--r,0deg));transition:transform .55s var(--ease)}
+.pstack img:nth-child(1){--r:-6deg}.pstack img:nth-child(2){--r:5deg}
+.pvis:hover .pstack img:nth-child(1){transform:translate(-14px,-14px) rotate(-12deg)}
+.pvis:hover .pstack img:nth-child(2){transform:translate(8px,-20px) rotate(10deg)}
+.prow.hp .pinfo{position:relative}
+.prow.hp .pinfo>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(.25s + var(--d,0)*.09s)}
+.prow.hp.in .pinfo>*{opacity:1;transform:none}
+.pno{position:absolute;top:-64px;inset-inline-end:0;font:900 6.5rem 'Montserrat',sans-serif;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(124,58,237,.28);pointer-events:none;direction:ltr;transition:-webkit-text-stroke-color .5s}
+.prow.hp:hover .pno{-webkit-text-stroke-color:rgba(124,58,237,.7)}
+.prow.hp .pinfo .sub{display:inline-flex;align-items:center;gap:10px}
+.prow.hp .pinfo .sub::before{content:'';width:34px;height:2px;border-radius:2px;background:var(--green)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.chips .pill{margin-bottom:0}
+.prow.hp .dbtn{position:relative;overflow:hidden}
+.prow.hp .dbtn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s var(--ease)}
+.prow.hp .dbtn:hover::after{transform:translateX(130%)}
+.prow.hp .dbtn svg{transition:transform .3s}
+.prow.hp .dbtn:hover svg{transform:translateX(5px)}
+html[dir=rtl] .prow.hp .dbtn svg{transform:scaleX(-1)}
+html[dir=rtl] .prow.hp .dbtn:hover svg{transform:scaleX(-1) translateX(5px)}
+@media(max-width:900px){.pno{font-size:4.5rem;top:-46px}.prow.hp{margin-bottom:84px}.pstack{bottom:-22px}.pstack img{width:84px;height:62px}}
+.pcnt{position:absolute;top:16px;inset-inline-end:16px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;background:rgba(20,8,48,.45);border:1px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:.78rem;font-weight:700}
+.pcnt svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+@media(max-width:900px){.prow.hp .pinfo{padding-top:30px}.pno{top:-22px;font-size:4rem}}
+/* modal: cover, stats, mosaic */
+.mcover{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/7;background:linear-gradient(135deg,#ede9fe,#ddd6fe);flex:none;box-shadow:0 18px 44px rgba(76,29,149,.25)}
+.mcover img{width:100%;height:100%;object-fit:cover;display:block;animation:kb 14s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.mcover::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,8,48,.85),transparent 60%)}
+.mcover div{position:absolute;inset-inline:0;bottom:0;padding:22px 26px;z-index:2;color:#fff}
+.mcover small{display:block;font:700 .72rem 'Montserrat',sans-serif;letter-spacing:2px;color:#c4b5fd;margin-bottom:6px}
+.mcover h3{font-size:clamp(1.2rem,3vw,1.8rem);font-weight:900;line-height:1.4}
+.mstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.ms{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:#faf9ff;border:1px solid rgba(124,58,237,.16);opacity:0;animation:msin .7s var(--ease) forwards;animation-delay:calc(var(--i,0)*.12s + .2s)}
+@keyframes msin{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+.ms i{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#5b21b6,#8b5cf6);color:#fff;box-shadow:0 8px 20px rgba(124,58,237,.35)}
+.ms i svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ms b{display:block;font-weight:900;font-size:1.15rem;line-height:1.3;direction:ltr;text-align:start}
+.ms span{font-size:.8rem;color:var(--mid)}
+.ms.ok b{color:#16a34a;font-size:.95rem;direction:inherit}
+.mline{stroke-dasharray:1;stroke-dashoffset:1;animation:mdraw 2s .4s ease forwards}
+@keyframes mdraw{to{stroke-dashoffset:0}}
+.cdot{animation:cdot 2s 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center;opacity:0}
+@keyframes cdot{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(3.2)}}
+.mabout{background:#faf9ff;border:1px solid rgba(124,58,237,.16);border-radius:18px;padding:22px}
+.mabout h4,.gh{font-size:1.05rem;font-weight:800;margin-bottom:12px;color:#4c1d95;display:flex;align-items:center;gap:10px}
+.gh::before,.mabout h4::before{content:'';width:5px;height:20px;border-radius:3px;background:linear-gradient(#5b21b6,#a78bfa)}
+.mabout p{color:var(--mid);line-height:1.9}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:118px;grid-auto-flow:dense;gap:12px}
+@media(max-width:700px){.mgrid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px}}
+.gi{padding:0;border:0;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#ede9fe,#ddd6fe);cursor:zoom-in;box-shadow:0 8px 22px rgba(76,29,149,.14);transition:transform .35s var(--ease),box-shadow .35s;opacity:0;animation:msin .6s var(--ease) forwards;animation-delay:calc(min(var(--i,0),14)*.05s + .5s)}
+.gi:nth-child(7n+1){grid-column:span 2;grid-row:span 2}
+.gi:nth-child(7n+5){grid-row:span 2}
+.gi:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 16px 34px rgba(124,58,237,.34);z-index:2}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.gi:hover img{transform:scale(1.1)}
+#plb{position:fixed;inset:0;z-index:250;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(10,4,24,.94);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+#plb.open{opacity:1;visibility:visible}
+#plb img{max-width:92vw;max-height:80vh;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#plb .plc{color:#ddd6fe;font-size:.9rem}
+#plb button{position:absolute;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.14);color:#fff;font-size:1.5rem;cursor:pointer}
+#plb button:hover{background:var(--green)}
+#plbx{top:18px;inset-inline-end:18px}#plbp{inset-inline-start:14px;top:50%}#plbn{inset-inline-end:14px;top:50%}
+@media(prefers-reduced-motion:reduce){#major::before,#major::after,.mcover img,.mline,.cdot{animation:none!important}.mline{stroke-dashoffset:0}.prow.hp,.prow.hp .pinfo>*,.ms,.gi{opacity:1!important;transform:none!important;animation:none!important}.pvis .pimg{clip-path:none!important}}
 </style>
 </head>
 <body>
@@ -428,27 +522,10 @@ html[lang=ar] .hero-in p{margin-bottom:22px}
 
 <section id="major">
   <div class="eh"><small>FEATURED PROJECTS</small><h2 data-h="secT"></h2></div>
-  <div class="prow">
-    <div class="pimg"><img src="https://i.postimg.cc/wBY5ZzDG/2b423955-79e8-4557-88f8-5ebcf298b9ef.jpg" alt="" referrerpolicy="no-referrer" loading="lazy" decoding="async"/></div>
-    <div class="pinfo">
-      <span class="sub">QIDDIYA TRANSPORT HUB PROJECT</span>
-      <h3 data-h="q_h"></h3>
-      <p class="desc" data-t="q_d"></p>
-      <div class="pill"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span data-t="q_w"></span></div><br>
-      <button class="dbtn" data-open="qiddiya"><span data-t="more"></span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-    </div>
-  </div>
-  <div class="prow rev">
-    <div class="pimg"><img src="https://i.postimg.cc/Wp0dYZ5V/002247a9-a55e-4786-a83f-91ad623b5978.jpg" alt="" referrerpolicy="no-referrer" loading="lazy" decoding="async"/></div>
-    <div class="pinfo">
-      <span class="sub">CARE MEDICAL HOSPITALS PROJECT</span>
-      <h3 data-h="c_h"></h3>
-      <p class="desc" data-t="c_d"></p>
-      <div class="pill"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span data-t="c_w"></span></div><br>
-      <button class="dbtn" data-open="care"><span data-t="more"></span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-    </div>
-  </div>
+  <div class="pstats" id="pstats"></div>
+  <div id="plist"></div>
 </section>
+<div id="plb"><button id="plbx" aria-label="Close">×</button><button id="plbp" aria-label="Prev">‹</button><img id="plbi" alt=""/><span class="plc" id="plbc"></span><button id="plbn" aria-label="Next">›</button></div>
 <div id="pm"><div class="mc">
   <div class="mh"><h2 id="mt"></h2><button class="mback" id="mb"><span>×</span><span data-t="back"></span></button></div>
   <div class="mbody" id="mbody"></div>
@@ -478,21 +555,76 @@ html[lang=ar] .hero-in p{margin-bottom:22px}
 <a id="fab" href="tel:+966554186401" aria-label="Call"></a>
 <script>
 let lang='ar';try{lang=localStorage.getItem('lang')||'ar'}catch(e){}
-const I={"ar": {"kingdom": "المملكة العربية السعودية", "kingdom2": "المملكة العربية السعودية", "fAbout": "مشاريع هندسية متكاملة عظم وبناء وإلكتروميكانيك وتشطيبات وديكورات في جميع أنحاء المملكة", "fLinks": "روابط سريعة", "dev": "تطوير الموقع بواسطة", "rights": "© 2026 إعمار هورايزونز — جميع الحقوق محفوظة", "nav": ["الرئيسية", "نبذة عن مشاريعنا", "تشطيبات", "ديكورات", "إلكتروميكانيك", "فريق العمل", "تواصل معنا"], "h1": "نبذة عن <em>مشاريعنا الكبرى</em>", "heroP": "مشاريع إنشائية وكهروميكانيكية بأعلى المعايير العالمية، والتزام تام بالمواعيد المحددة.", "btn1": "شاهد مشاريعنا", "btn2": "تواصل معنا", "secT": "أبرز <em>مشاريعنا الإستراتيجية</em>", "q_h": "مشروع <em>القدية</em>", "q_d": "أعمال مركز النقل الجنوبي الغربي (Southwest Transport Hub) وفق أحدث المعايير الهندسية والتقنية لتوفير شبكة نقل متكاملة وعالية الكفاءة.", "q_w": "105 عامل وفني ميداني", "c_h": "مشروع <em>مستشفيات رعاية الطبية</em>", "c_d": "تنفيذ التجهيزات الكهروميكانيكية المتكاملة وتطوير البنية التحتية الطبية لضمان تقديم أعلى مستويات الرعاية والاعتمادية التشغيلية.", "c_w": "96 عامل وفني مختص", "more": "عرض المزيد حول المشروع", "back": "رجوع", "m_nature": "طبيعة المشروع:", "m_crew": "إجمالي طاقم العمل الميداني:", "m_state": "حالة التنفيذ:", "m_done": "منجز ومسلّم بكفاءة عالية", "m_chart": "رسم بياني يوضح اتجاه الأداء وتصاعد الإنتاجية الميدانية", "m_shot": "لقطة ميدانية رقم", "title": "نبذة عن مشاريعنا | إعمار هورايزونز"}, "en": {"kingdom": "Kingdom of Saudi Arabia", "kingdom2": "Kingdom of Saudi Arabia", "fAbout": "Integrated engineering projects: structure & construction, electromechanical, fit-out and decorations across the Kingdom.", "fLinks": "Quick Links", "dev": "Website developed by", "rights": "© 2026 Emaar Horizons. All rights reserved.", "nav": ["Home", "About Our Projects", "Fit-out", "Decorations", "Electromechanical", "Our Team", "Contact"], "h1": "About Our <em>Major Projects</em><br>and Our Journey to Leadership", "heroP": "Major construction and electromechanical projects delivered to the highest standards and on schedule.", "btn1": "View Our Projects", "btn2": "Contact Us", "secT": "Our Most <em>Strategic Projects</em>", "q_h": "<em>Qiddiya</em> Project", "q_d": "Works for the Southwest Transport Hub, built to the latest engineering and technical standards to provide an integrated, highly efficient transport network.", "q_w": "105 field workers and technicians", "c_h": "<em>Care Medical Hospitals</em> Project", "c_d": "Delivering integrated electromechanical installations and developing medical infrastructure to ensure the highest levels of care and operational reliability.", "c_w": "96 specialized workers and technicians", "more": "More About the Project", "back": "Back", "m_nature": "Project:", "m_crew": "Total field crew:", "m_state": "Status:", "m_done": "Completed and handed over with high efficiency", "m_chart": "Chart showing performance trend and rising field productivity", "m_shot": "Field shot no.", "title": "About Our Projects | Emaar Horizons"}};
+const I={"ar": {"kingdom": "المملكة العربية السعودية", "kingdom2": "المملكة العربية السعودية", "fAbout": "مشاريع هندسية متكاملة عظم وبناء وإلكتروميكانيك وتشطيبات وديكورات في جميع أنحاء المملكة", "fLinks": "روابط سريعة", "dev": "تطوير الموقع بواسطة", "rights": "© 2026 إعمار هورايزونز — جميع الحقوق محفوظة", "nav": ["الرئيسية", "نبذة عن مشاريعنا", "تشطيبات", "ديكورات", "إلكتروميكانيك", "فريق العمل", "تواصل معنا"], "h1": "نبذة عن <em>مشاريعنا الكبرى</em>", "heroP": "مشاريع إنشائية وكهروميكانيكية بأعلى المعايير العالمية، والتزام تام بالمواعيد المحددة.", "btn1": "شاهد مشاريعنا", "btn2": "تواصل معنا", "secT": "مشاريع <em>تتميز بالجودة والإتقان</em>", "q_h": "مشروع <em>القدية</em>", "q_d": "أعمال مركز النقل الجنوبي الغربي (Southwest Transport Hub) وفق أحدث المعايير الهندسية والتقنية لتوفير شبكة نقل متكاملة وعالية الكفاءة.", "q_w": "105 عامل وفني ميداني", "c_h": "مشروع <em>مستشفيات رعاية الطبية</em>", "c_d": "تنفيذ التجهيزات الكهروميكانيكية المتكاملة وتطوير البنية التحتية الطبية لضمان تقديم أعلى مستويات الرعاية والاعتمادية التشغيلية.", "c_w": "96 عامل وفني مختص", "more": "عرض المزيد حول المشروع", "back": "رجوع", "m_nature": "طبيعة المشروع:", "m_crew": "إجمالي طاقم العمل الميداني:", "m_state": "حالة التنفيذ:", "m_done": "منجز ومسلّم بكفاءة عالية", "m_chart": "رسم بياني يوضح اتجاه الأداء وتصاعد الإنتاجية الميدانية", "m_shot": "لقطة ميدانية رقم", "title": "نبذة عن مشاريعنا | إعمار هورايزونز"}, "en": {"kingdom": "Kingdom of Saudi Arabia", "kingdom2": "Kingdom of Saudi Arabia", "fAbout": "Integrated engineering projects: structure & construction, electromechanical, fit-out and decorations across the Kingdom.", "fLinks": "Quick Links", "dev": "Website developed by", "rights": "© 2026 Emaar Horizons. All rights reserved.", "nav": ["Home", "About Our Projects", "Fit-out", "Decorations", "Electromechanical", "Our Team", "Contact"], "h1": "About Our <em>Major Projects</em><br>and Our Journey to Leadership", "heroP": "Major construction and electromechanical projects delivered to the highest standards and on schedule.", "btn1": "View Our Projects", "btn2": "Contact Us", "secT": "Projects of <em>Quality &amp; Craftsmanship</em>", "q_h": "<em>Qiddiya</em> Project", "q_d": "Works for the Southwest Transport Hub, built to the latest engineering and technical standards to provide an integrated, highly efficient transport network.", "q_w": "105 field workers and technicians", "c_h": "<em>Care Medical Hospitals</em> Project", "c_d": "Delivering integrated electromechanical installations and developing medical infrastructure to ensure the highest levels of care and operational reliability.", "c_w": "96 specialized workers and technicians", "more": "More About the Project", "back": "Back", "m_nature": "Project:", "m_crew": "Total field crew:", "m_state": "Status:", "m_done": "Completed and handed over with high efficiency", "m_chart": "Chart showing performance trend and rising field productivity", "m_shot": "Field shot no.", "title": "About Our Projects | Emaar Horizons"}};
 
-const PD={
- qiddiya:{t:{ar:'مشروع القدية - مركز النقل الجنوبي الغربي',en:'Qiddiya Project – Southwest Transport Hub'},
-  d:{ar:'أعمال مركز النقل الجنوبي الغربي (Southwest Transport Hub) في مشروع القدية الضخم. تم إنجاز التجهيزات الهندسية والبنية التحتية المتقدمة وفق خطط دقيقة ومتابعة مستمرة لضمان الجودة العالية.',en:'Works for the Southwest Transport Hub within the giant Qiddiya project. The engineering installations and advanced infrastructure were completed according to precise plans and continuous follow-up to ensure high quality.'},
-  w:{ar:'105 عامل وفني مختص',en:'105 specialized workers and technicians'},
-  img:['wBY5ZzDG/2b423955-79e8-4557-88f8-5ebcf298b9ef.jpg','3wjjHqZc/3edb437b-f16a-40d1-b13c-a105bb84c8bf.jpg','GpPP1fjf/461f82ff-1992-4ac2-886c-72746f629260.jpg','W4mmPy7C/fd7689e2-2fef-492b-8c71-a441bedd88ef.jpg'],
-  path:'M2,90 C50,95 100,70 150,55 C200,40 250,60 300,30 C350,15 400,20 456,10'},
- care:{t:{ar:'مشروع مستشفيات رعاية الطبية',en:'Care Medical Hospitals Project'},
-  d:{ar:'تنفيذ الأنظمة الكهروميكانيكية المتكاملة وتجهيز الأقسام الطبية بمستشفيات رعاية، مع تطبيق أعلى معايير الأمان والسلامة الهندسية والتشغيلية المعتمدة.',en:'Implementing integrated electromechanical systems and equipping the medical departments at Care hospitals, applying the highest approved engineering and operational safety standards.'},
-  w:{ar:'96 عامل وفني مختص',en:'96 specialized workers and technicians'},
-  img:['Wp0dYZ5V/002247a9-a55e-4786-a83f-91ad623b5978.jpg','Kct1pT0m/52592e14-862d-4545-beba-a6fba44bcc82.jpg','VsXJZtK6/9d43837e-3364-4977-9c3e-2736bd7a0418.jpg','Wp0dYZ5b/b9e286f9-f2a2-4e6c-a7b8-2ee3ae4a2f8d.jpg','9XyDg9L0/b9f2e6bf-09a6-42fd-91d1-9cb306f51d87.jpg','Y2QvDFdM/bac11ebb-b702-4dfa-a80d-58f465581644.jpg','v8542n3J/e3ce6013-4d04-4fa1-80b1-fada4e68c9e0.jpg','fWYVqd8Q/f02db125-0fde-4dc3-b3ea-2ce52869c4af.jpg'],
-  path:'M2,100 C60,85 110,65 170,75 C230,85 280,40 330,25 C390,10 430,15 456,8'}};
+const PD={};
 const B='https://i.postimg.cc/';
 let curP=null;
+Object.assign(PD,{
+life:{hp:1,sub:"PROJECT OF A LIFETIME",t:{ar:"مشروع العمر",en:"Project of a Lifetime"},c:{"ar": "شركة أبعاد فنية", "en": "Abaad Fanniya Co."},cs:0,img:["fLxvsDpL/012609db-99a0-4879-9c19-873d9dd8f03f.jpg", "76vNjfsY/2960948d-1ee1-423e-b487-92962f1e5e43.jpg", "4dC1jmLx/42b21b84-7888-49e3-bd13-4c41f4f5bcb3.jpg", "HxGtFVZL/45def0da-daf2-4695-8866-c159210af865.jpg", "PxGM0P3Y/5f005408-1443-4c19-b76f-033913a72262.jpg", "63shFyjG/724a3832-4c4e-4a7b-91a7-8bc234a3b7fe.jpg", "B6WCRXYs/9da7bb76-6c71-4b43-a884-e56ba783ebeb.jpg", "FRtxw7WR/a74d53f0-a800-4652-a5aa-4e88f8bee140.jpg", "G2kjRdVB/cb221179-aa15-42e7-84ab-fbc802375d65.jpg", "XJMgtpHF/d6b5743d-ca49-4703-98e6-27b4f1bbb1e4.jpg", "rm697KnR/f105dae1-26c6-4a87-8f23-fa08add1a1aa.jpg"],path:"M2,95 C60,90 110,70 170,60 C230,50 280,55 330,30 C390,15 430,18 456,8"},
+mahra:{hp:1,sub:"SAKAK AL MAHRA PROJECT",t:{ar:"مشروع سكك المهرة",en:"Sakak Al Mahra Project"},c:{"ar": "شركة وثبة", "en": "Wathba Company"},cs:0,img:["MpQMNth5/0480e9e7-7460-4002-84eb-0df19ed77b5a.jpg", "Z5dB2j1x/0606f85d-30db-4f6f-8bdb-866555359b42.jpg", "hGRzBTBb/13ae9354-2c02-433a-b9aa-9f7c14976f94.jpg", "kgb6zwkY/29c3c44a-74b1-46cc-94b3-22aba9cd54a0.jpg", "jjYwbPbH/331d5c74-b224-4664-bc30-7df21b73c906.jpg", "HkycR3f0/366b7b1b-43ae-4128-ac59-511618dd33a9.jpg", "ZqzBSpSL/4f073fb2-248d-4109-849c-2ad97a9cc060.jpg", "XYCGmxTs/6b00d30e-572c-4c52-b6fb-dcb86622bdb3.jpg", "rwr03gvJ/71ddf751-c7f3-429f-8811-5fefc3e5b56c.jpg", "BvfL0H0M/a34c4289-ca83-46ed-9fef-0fd6f4ad0d98.jpg", "JzkDvK9Q/a9b31c9d-fabe-4a33-b12c-cef8b191d2cb.jpg", "PqnpjYjK/e4192bb6-663f-453c-8976-69e90c69ff29.jpg", "N0v9cmcD/e76af12f-13a2-4b2a-9ae9-544f407b2b22.jpg", "nLfjJBJK/f80c60b2-5f51-467e-85e1-9cf212adb180.jpg"],path:"M2,100 C50,92 105,75 160,70 C215,65 270,40 320,32 C380,22 425,14 456,6"},
+capfour:{hp:1,sub:"CAP FOUR WAREHOUSE BUILDINGS",t:{ar:"مباني مستودعات الكاب فور",en:"Cap Four Warehouse Buildings"},c:{"ar": "شركة الراشد", "en": "Al Rashed Company"},cs:0,img:["ZR75CyGh/0d5db3ef-5264-464e-9a3d-b3c6b4b1e3b0.jpg", "xCx1cbWp/140c5e05-cd8e-47c2-a494-85d50dfe829b.jpg", "Px35P8B0/2b021301-0436-4069-9d29-460d36f73139.jpg", "j5gSLJGF/484c7603-070f-448a-8fb4-dd49d101db82.jpg", "bJCws2K7/5b288d6e-7147-4041-b2aa-f6a5eac2ded4.jpg", "0Q2NkCB1/7e30d6c2-5554-49d7-bba9-f0168d1cff69.jpg", "RFV0STbj/9226b391-2c58-48fb-a6b5-f96034ac9af8.jpg", "85Kzjr2Q/d2a40525-254d-4248-920b-c6d456dbc66e.jpg", "ZR75Cy1g/e46c0714-8c5d-44bd-a0c0-33a0ada46c30.jpg", "ZR75CyGS/f9a22662-283b-49ea-8fdb-c8682dba4b07.jpg"],path:"M2,92 C55,96 115,72 175,62 C235,52 285,48 335,28 C385,14 428,16 456,10"},
+hittin:{hp:1,sub:"HITTIN PROJECT",t:{ar:"مشروع حطين",en:"Hittin Project"},c:null,cs:0,img:["RCWHwMXQ/1b952e49-c55b-4130-b635-23d25c60f4e8.jpg", "PNGhwb2n/2ab547c3-12ac-4f2b-b1b6-361e006b7db0.jpg", "t70yxd2p/39e4810a-2785-4855-8d38-ec61fb912a72.jpg", "V5y1C9D1/45b86074-03cd-43c7-885a-7dd4ad8e2b0e.jpg", "YjckWNbr/4837af35-fe28-4def-9195-dec00c2fb0a5.jpg", "LhdR1kvG/4d8727da-2b08-43b4-85a9-9d635f8703ee.jpg", "7bvD21my/4daf386b-b5ef-4525-b9e0-024fe0ff7a18.jpg", "J0HM0Y32/50a33421-26e0-4782-918a-99100b971249.jpg", "pyNxFQkS/5fbf08f8-bcdf-4850-888b-2d9bed8ef77b.jpg", "tRsxFX2V/61ea3f5d-f3ab-4839-a9d8-0f0425d3ae9e.jpg", "HWrybpBM/72b4fe25-de45-4aa1-9c1b-df586f842b74.jpg", "RCWHwMXc/7549b7a6-5d42-4483-ba56-e9eb41bb2c89.jpg", "nVXDqH04/7687fd03-6bb8-4059-9853-0be4cad37fb8.jpg", "Sj0qMLVt/7d217678-9f28-4c73-b791-5b351f4950d0.jpg", "gr9dZyNJ/946cc2f3-7a09-4419-8ff3-2225d531210f.jpg", "5jc1C5nx/a83e280b-3b61-4f2c-abe1-20e8334773e2.jpg", "5jc1C5nV/b26692dc-62d4-4c15-8213-0eb10e761fdf.jpg", "mZPH7b8w/d15fdef3-c92b-454e-a252-50a7f7f73929.jpg", "yWqBZhnp/d6b50884-1d09-40bd-a983-9e80e1c44a64.jpg", "gcxZ3YNK/db14102c-57d1-439b-979d-60dcbe0cc608.jpg", "jCVK76Zd/e1abe03e-3197-45ee-b02b-a69232619922.jpg", "rz6crGgP/e5b983c0-d344-49ac-98f7-04d87edde9b5.jpg", "t70yxd20/f89a3481-8811-4866-8cec-7b51f8dcf85b.jpg"],path:"M2,98 C60,88 100,80 160,58 C220,36 270,50 330,26 C385,12 430,12 456,5"},
+villas:{hp:1,sub:"PRIVATE VILLAS",t:{ar:"فلل خاصة متفرقة",en:"Private Villas"},c:{"ar": "عظم وتشطيب", "en": "Structure & Finishing"},cs:1,img:["tCh7z7PW/10311547-cd4d-481e-a3ee-64626e6d3c12.jpg", "tC0YPF1x/14eb9dfc-772e-4a1d-8e4e-a7db7cf57c40.jpg", "QdhCYsJZ/150bdcb6-fad5-4fe9-9b02-8e4358cc594e.jpg", "hP9h0hx5/2a4b6adf-a0bd-4ab8-a9ba-925b75df00f2.jpg", "52byK1S9/39dc4e86-2c1a-4cea-8aa4-c4238e266c09.jpg", "Ghk9j9YS/39f3b915-94cf-4087-b1f3-317440b2be89.jpg", "JzM0YmcP/3f9233e9-2e2a-4223-bd0b-cc75a5a483f7.jpg", "Fsj1x1cy/5c7c81ff-8159-49e2-bf16-70cc7a416ce0.jpg", "8PhsbsW9/62584b93-6c93-41bb-99c1-b134344c999e.jpg", "GmdtgrJW/69b39911-6695-4b6a-8971-d00fbecf2c74.jpg", "ncvM1M71/75d12dee-c501-43ba-b710-f5c973c1c57f.jpg", "02prCrmr/81b632b2-00a0-4307-9129-be7568cbb0e6.jpg", "hP9h0hx9/8946f7b3-c879-4935-86a1-fc85db0cdc9e.jpg", "SxkR1qf0/8bd5242f-7de6-4209-87ec-388844652793.jpg", "02prCrmn/9da839d1-23fb-400e-be7a-42efca491e14.jpg", "XY4q13kv/b48f8bcc-ae30-4783-9ffb-2de116937d82.jpg", "15p4K46v/b63c906e-f79f-45b4-8409-6aabc221cc6f.jpg", "Dyqmcmsb/b85a0a87-358c-42bb-b24e-245c4d2e19ef.jpg", "nhprSZYg/b867a19a-5f66-411a-9c52-2aaa63e7e8c8.jpg", "c4Q6c6YD/bb134a4d-15b1-4e73-97d5-d3dabdba9afa.jpg", "Z54nsZxZ/c2fc160e-ba03-47ea-84a7-71ff0bbbb2c4.jpg", "7YgbNb7X/d31b48ae-0d74-435a-afab-9b88c83f967b.jpg", "13sX7PrX/d3ba0484-caa2-4a1b-bd07-adc25365327d.jpg", "qv4qD0XF/e54182f6-5f6a-4c34-8ade-7d49a15ffeeb.jpg", "X7wXgXFk/fe3697ac-43bb-4caa-b799-a7cdc6d976fe.jpg"],path:"M2,96 C65,80 115,78 175,56 C235,34 285,52 335,30 C390,16 430,14 456,8"},
+fozan:{hp:1,sub:"AL FOZAN VILLAS \u2013 AL REHAB",t:{ar:"مشروع فلل الفوزان الرحاب",en:"Al Fozan Villas – Al Rehab"},c:null,cs:0,img:["13vmWFzf/0369fc75-767f-444b-a834-0a56132945fd.jpg", "2S0kHW53/1a47e2e9-e492-4559-a7d7-e5a07e8ef7ec.jpg", "jSxqQcR5/3d5a24b4-ff08-4e02-adaa-d3343fd92d2e.jpg", "T3tdkbPY/50d57ba6-6874-4e79-9b49-f72563e6c725.jpg", "Z5wbfNqp/57b21ee0-c72a-44d5-adca-d4765fac4cd8.jpg", "Z5wbfNqB/5a89b532-ba36-4f2b-b38b-a8edbaa2bed1.jpg", "13vmWFzG/62026df6-8894-4094-897a-dfda14d1d352.jpg", "4xWf8c3B/8baab43e-c993-4b92-8072-16ccbef5ac2c.jpg", "dV5sWC0T/a2d559a9-a817-45ef-b277-6d46f5461ae7.jpg", "qvJBXwpC/d67b0262-e496-47d4-925f-f30633156710.jpg", "vZ0YPnmt/f27edb94-7854-476a-ad1a-ecb14a3ae6e9.jpg"],path:"M2,100 C58,94 108,66 168,64 C228,62 278,38 328,30 C388,20 428,12 456,7"}});
+
+const HU={ar:{photos:'صورة',projects:'مشروع',allPhotos:'صورة من الموقع',client:'الجهة',scope:'نطاق العمل',gal:'صور المشروع',about:'نبذة عن المشروع',more:'عرض المزيد حول المشروع',n:'عدد الصور',
+ d:(t,c,s)=>`مشروع نفذته إعمار هورايزونز${c&&!s?` لصالح ${c}`:''}${c&&s?` (${c})`:''}، وتعكس صوره جودة التنفيذ والإتقان في أدق التفاصيل والتزامنا بأعلى معايير العمل.`},
+ en:{photos:'photos',projects:'projects',allPhotos:'site photos',client:'Client',scope:'Scope',gal:'Project gallery',about:'About the project',more:'View more about the project',n:'Photos',
+ d:(t,c,s)=>`A project delivered by Emaar Horizons${c&&!s?` for ${c}`:''}${c&&s?` (${c})`:''}. Its photos reflect the quality of execution, the precision in every detail and our commitment to the highest working standards.`}};
+const HK=['life','mahra','capfour','hittin','villas','fozan'];
+const shown=new Set();let fxBound=false,statsDone=false;
+const ICO={img:'<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 16l-5-5-9 9"/>',bld:'<path d="M3 21h18M5 21V5l8-2v18M13 9h6v12M8 8h2M8 12h2M8 16h2"/>',ok:'<path d="M5 12.5l4.5 4.5L19 7.5"/>'};
+const svgI=n=>`<svg viewBox="0 0 24 24">${ICO[n]}</svg>`;
+function countUp(el,to,dur=1600){const t0=performance.now();(function f(x){const p=Math.min((x-t0)/dur,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+function renderRows(){
+  const U=HU[lang],list=$('plist');list.innerHTML='';
+  const total=HK.reduce((a,k)=>a+PD[k].img.length,0);
+  $('pstats').innerHTML=`<div class="pst"><b data-c="${HK.length}">${statsDone?HK.length:0}</b><span>${U.projects}</span></div><div class="pst"><b data-c="${total}">${statsDone?total:0}</b><span>${U.allPhotos}</span></div>`;
+  HK.forEach((k,i)=>{const p=PD[k],n=p.img.length,c=p.c?p.c[lang]:null;
+    const d=document.createElement('article');d.className='prow hp'+(i%2?' rev':'')+(shown.has(k)?' in':'');d.dataset.k=k;
+    const num=String(i+1).padStart(2,'0');
+    d.innerHTML=`<div class="pvis"><div class="pimg"><img src="${B}${p.img[0]}" alt="${p.t[lang]}" referrerpolicy="no-referrer" loading="lazy" decoding="async"/><span class="pcnt">${svgI("img")}${n} ${U.photos}</span><span class="ptag"><b>${p.t[lang]}</b></span></div>
+      <div class="pstack"><img src="${B}${p.img[1]}" alt="" referrerpolicy="no-referrer" loading="lazy"/><img src="${B}${p.img[2]}" alt="" referrerpolicy="no-referrer" loading="lazy"/></div></div>
+    <div class="pinfo"><span class="pno" style="--d:0">${num}</span>
+      <span class="sub" style="--d:1">${p.sub}</span><h3 style="--d:2">${p.t[lang]}</h3><p class="desc" style="--d:3">${U.d(p.t[lang],c,p.cs)}</p>
+      <div class="chips" style="--d:4"><div class="pill">${svgI('img')}<span>${n} ${U.photos}</span></div>${c?`<div class="pill">${svgI('bld')}<span>${c}</span></div>`:''}</div>
+      <button class="dbtn" data-open="${k}" style="--d:5"><span>${U.more}</span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>`;
+    list.appendChild(d)});
+  fx();
+}
+function fx(){
+  const rows=[...document.querySelectorAll('.prow.hp')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');shown.add(e.target.dataset.k);io.unobserve(e.target)}),{threshold:.2});
+  rows.forEach(r=>{if(!r.classList.contains('in'))io.observe(r)});
+  if(!statsDone){const st=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;statsDone=true;e.target.querySelectorAll('[data-c]').forEach(b=>countUp(b,+b.dataset.c));st.disconnect()}),{threshold:.5});st.observe($('pstats'))}
+  if(matchMedia('(hover:hover)').matches)rows.forEach(r=>{const v=r.querySelector('.pvis'),im=v.querySelector('.pimg');
+    v.addEventListener('pointermove',e=>{const b=v.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;im.style.setProperty('--ry',(x*9).toFixed(2)+'deg');im.style.setProperty('--rx',(-y*7).toFixed(2)+'deg')});
+    v.addEventListener('pointerleave',()=>{im.style.setProperty('--ry','0deg');im.style.setProperty('--rx','0deg')})});
+  par();
+  if(!fxBound){fxBound=true;let t=0;addEventListener('scroll',()=>{if(t)return;t=requestAnimationFrame(()=>{t=0;par()})},{passive:true});addEventListener('resize',par)}
+}
+function par(){document.querySelectorAll('.prow.hp .pimg').forEach(b=>{const r=b.getBoundingClientRect();if(r.bottom<-100||r.top>innerHeight+100)return;const o=(r.top+r.height/2-innerHeight/2)/innerHeight;b.querySelector('img').style.setProperty('--py',Math.max(-1,Math.min(1,o))*-0.1*r.height+'px')})}
+function renderHP(p){
+  const T=I[lang],U=HU[lang],c=p.c?p.c[lang]:null,m=p.path.match(/(\d+),(\d+)$/);
+  $('mt').textContent=p.t[lang];
+  $('mbody').innerHTML=`<div class="mcover"><img src="${B}${p.img[0]}" alt="" referrerpolicy="no-referrer"/><div><small>${p.sub}</small><h3>${p.t[lang]}</h3></div></div>
+  <div class="mstats">
+    <div class="ms" style="--i:0"><i>${svgI('img')}</i><div><b data-c="${p.img.length}">0</b><span>${U.n}</span></div></div>
+    ${c?`<div class="ms" style="--i:1"><i>${svgI('bld')}</i><div><b style="direction:inherit;font-size:.95rem">${c}</b><span>${p.cs?U.scope:U.client}</span></div></div>`:''}
+    <div class="ms ok" style="--i:2"><i>${svgI('ok')}</i><div><b>${T.m_done}</b><span>${T.m_state.replace(/[:：]$/,'')}</span></div></div></div>
+  <div class="cc"><h4><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-4-4L3 15.5"/></svg>${T.m_chart}</h4>
+   <div class="cw"><svg viewBox="0 0 456 120" preserveAspectRatio="none"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(167,139,250,.55)"/><stop offset="1" stop-color="rgba(167,139,250,0)"/></linearGradient></defs>
+   <path d="${p.path} L456,120 L2,120 Z" fill="url(#mg)"/><path class="mline" d="${p.path}" fill="none" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round" pathLength="1"/>${m?`<circle cx="${m[1]}" cy="${m[2]}" r="5" fill="#fff"/><circle class="cdot" cx="${m[1]}" cy="${m[2]}" r="6" fill="#c4b5fd"/>`:''}</svg></div></div>
+  <div class="mabout"><h4>${U.about}</h4><p>${U.d(p.t[lang],c,p.cs)}</p></div>
+  <div><h4 class="gh">${U.gal}</h4><div class="mgrid">${p.img.slice(1).map((x,i)=>`<button class="gi" style="--i:${i}" data-i="${i+1}" aria-label="${p.t[lang]} ${i+2}"><img src="${B}${x}" alt="" referrerpolicy="no-referrer" loading="lazy"/></button>`).join('')}</div></div>`;
+  $('mbody').querySelectorAll('[data-c]').forEach(b=>countUp(b,+b.dataset.c,1400));
+  $('mbody').querySelectorAll('.gi').forEach(b=>b.onclick=()=>openLB(p,+b.dataset.i));
+}
+let lbP=null,lbI=0;
+function showLB(){$('plbi').src=B+lbP.img[lbI];$('plbc').textContent=lbP.t[lang]+' — '+(lbI+1)+' / '+lbP.img.length}
+function openLB(p,i){lbP=p;lbI=i;showLB();$('plb').classList.add('open')}
+function closeLB(){$('plb').classList.remove('open');$('plbi').src=''}
 
 const P={
 menu:'<path d="M3 7h18M3 12h18M3 17h12"/>',close:'<path d="M18 6L6 18M6 6l12 12"/>',
@@ -550,7 +682,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')setD(false)});
 
 
 function renderModal(){
-  if(!curP)return;const p=PD[curP],T=I[lang];
+  if(!curP)return;const p=PD[curP],T=I[lang];if(p.hp)return renderHP(p);
   $('mt').textContent=p.t[lang];
   $('mbody').innerHTML=`<div class="sbox">
     <div class="sr"><span>${T.m_nature}</span><span>${p.t[lang]}</span></div>
@@ -566,8 +698,12 @@ function closeM(){$('pm').classList.remove('open');document.body.style.overflow=
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openM(b.dataset.open));
 $('mb').onclick=closeM;$('pm').addEventListener('click',e=>{if(e.target===$('pm'))closeM()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
-function onLang(){if(curP)renderModal()}
+function onLang(){renderRows();if(curP)renderModal()}
 
+$('plbx').onclick=closeLB;$('plbp').onclick=()=>{lbI=(lbI-1+lbP.img.length)%lbP.img.length;showLB()};$('plbn').onclick=()=>{lbI=(lbI+1)%lbP.img.length;showLB()};
+$('plb').addEventListener('click',e=>{if(e.target===$('plb'))closeLB()});
+addEventListener('keydown',e=>{if(!$('plb').classList.contains('open'))return;if(e.key==='Escape'){e.stopImmediatePropagation();closeLB()}if(e.key==='ArrowRight')(lang==='ar'?$('plbp'):$('plbn')).click();if(e.key==='ArrowLeft')(lang==='ar'?$('plbn'):$('plbp')).click()},true);
+$('major').addEventListener('click',e=>{const b=e.target.closest('.prow.hp [data-open]');if(b)openM(b.dataset.open)});
 setLang(lang);
 </script>
 <script>
