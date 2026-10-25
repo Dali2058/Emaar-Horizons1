@@ -414,6 +414,7 @@ html[lang=ar] .hero-in p{margin-bottom:22px}
 .pst:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(124,58,237,.25)}
 .pst b{display:block;font:800 2.1rem 'Montserrat',sans-serif;direction:ltr;line-height:1.2;background:linear-gradient(135deg,#4c1d95,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
 .pst span{font-size:.85rem;color:var(--mid);font-weight:600}
+.pst:first-child{min-width:240px}
 #plist{display:grid;gap:24px}
 .prow.hp{position:relative;margin-bottom:96px;opacity:0;transform:translateY(46px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .prow.hp.in{opacity:1;transform:none}
@@ -568,9 +569,9 @@ hittin:{hp:1,sub:"HITTIN PROJECT",t:{ar:"مشروع حطين",en:"Hittin Project
 villas:{hp:1,sub:"PRIVATE VILLAS",t:{ar:"فلل خاصة متفرقة",en:"Private Villas"},c:{"ar": "عظم وتشطيب", "en": "Structure & Finishing"},cs:1,img:["tCh7z7PW/10311547-cd4d-481e-a3ee-64626e6d3c12.jpg", "tC0YPF1x/14eb9dfc-772e-4a1d-8e4e-a7db7cf57c40.jpg", "QdhCYsJZ/150bdcb6-fad5-4fe9-9b02-8e4358cc594e.jpg", "hP9h0hx5/2a4b6adf-a0bd-4ab8-a9ba-925b75df00f2.jpg", "52byK1S9/39dc4e86-2c1a-4cea-8aa4-c4238e266c09.jpg", "Ghk9j9YS/39f3b915-94cf-4087-b1f3-317440b2be89.jpg", "JzM0YmcP/3f9233e9-2e2a-4223-bd0b-cc75a5a483f7.jpg", "Fsj1x1cy/5c7c81ff-8159-49e2-bf16-70cc7a416ce0.jpg", "8PhsbsW9/62584b93-6c93-41bb-99c1-b134344c999e.jpg", "GmdtgrJW/69b39911-6695-4b6a-8971-d00fbecf2c74.jpg", "ncvM1M71/75d12dee-c501-43ba-b710-f5c973c1c57f.jpg", "02prCrmr/81b632b2-00a0-4307-9129-be7568cbb0e6.jpg", "hP9h0hx9/8946f7b3-c879-4935-86a1-fc85db0cdc9e.jpg", "SxkR1qf0/8bd5242f-7de6-4209-87ec-388844652793.jpg", "02prCrmn/9da839d1-23fb-400e-be7a-42efca491e14.jpg", "XY4q13kv/b48f8bcc-ae30-4783-9ffb-2de116937d82.jpg", "15p4K46v/b63c906e-f79f-45b4-8409-6aabc221cc6f.jpg", "Dyqmcmsb/b85a0a87-358c-42bb-b24e-245c4d2e19ef.jpg", "nhprSZYg/b867a19a-5f66-411a-9c52-2aaa63e7e8c8.jpg", "c4Q6c6YD/bb134a4d-15b1-4e73-97d5-d3dabdba9afa.jpg", "Z54nsZxZ/c2fc160e-ba03-47ea-84a7-71ff0bbbb2c4.jpg", "7YgbNb7X/d31b48ae-0d74-435a-afab-9b88c83f967b.jpg", "13sX7PrX/d3ba0484-caa2-4a1b-bd07-adc25365327d.jpg", "qv4qD0XF/e54182f6-5f6a-4c34-8ade-7d49a15ffeeb.jpg", "X7wXgXFk/fe3697ac-43bb-4caa-b799-a7cdc6d976fe.jpg"],path:"M2,96 C65,80 115,78 175,56 C235,34 285,52 335,30 C390,16 430,14 456,8"},
 fozan:{hp:1,sub:"AL FOZAN VILLAS \u2013 AL REHAB",t:{ar:"مشروع فلل الفوزان الرحاب",en:"Al Fozan Villas – Al Rehab"},c:null,cs:0,img:["13vmWFzf/0369fc75-767f-444b-a834-0a56132945fd.jpg", "2S0kHW53/1a47e2e9-e492-4559-a7d7-e5a07e8ef7ec.jpg", "jSxqQcR5/3d5a24b4-ff08-4e02-adaa-d3343fd92d2e.jpg", "T3tdkbPY/50d57ba6-6874-4e79-9b49-f72563e6c725.jpg", "Z5wbfNqp/57b21ee0-c72a-44d5-adca-d4765fac4cd8.jpg", "Z5wbfNqB/5a89b532-ba36-4f2b-b38b-a8edbaa2bed1.jpg", "13vmWFzG/62026df6-8894-4094-897a-dfda14d1d352.jpg", "4xWf8c3B/8baab43e-c993-4b92-8072-16ccbef5ac2c.jpg", "dV5sWC0T/a2d559a9-a817-45ef-b277-6d46f5461ae7.jpg", "qvJBXwpC/d67b0262-e496-47d4-925f-f30633156710.jpg", "vZ0YPnmt/f27edb94-7854-476a-ad1a-ecb14a3ae6e9.jpg"],path:"M2,100 C58,94 108,66 168,64 C228,62 278,38 328,30 C388,20 428,12 456,7"}});
 
-const HU={ar:{photos:'صورة',projects:'مشروع',allPhotos:'صورة من الموقع',client:'الجهة',scope:'نطاق العمل',gal:'صور المشروع',about:'نبذة عن المشروع',more:'عرض المزيد حول المشروع',n:'عدد الصور',
+const HU={ar:{photos:'صورة',projects:'مشروع',done:'مشاريع تم إنجازها من أصل 13 مشروع',allPhotos:'صورة من الموقع',client:'الجهة',scope:'نطاق العمل',gal:'صور المشروع',about:'نبذة عن المشروع',more:'عرض المزيد حول المشروع',n:'عدد الصور',
  d:(t,c,s)=>`مشروع نفذته إعمار هورايزونز${c&&!s?` لصالح ${c}`:''}${c&&s?` (${c})`:''}، وتعكس صوره جودة التنفيذ والإتقان في أدق التفاصيل والتزامنا بأعلى معايير العمل.`},
- en:{photos:'photos',projects:'projects',allPhotos:'site photos',client:'Client',scope:'Scope',gal:'Project gallery',about:'About the project',more:'View more about the project',n:'Photos',
+ en:{photos:'photos',projects:'projects',done:'projects completed out of 13 projects',allPhotos:'site photos',client:'Client',scope:'Scope',gal:'Project gallery',about:'About the project',more:'View more about the project',n:'Photos',
  d:(t,c,s)=>`A project delivered by Emaar Horizons${c&&!s?` for ${c}`:''}${c&&s?` (${c})`:''}. Its photos reflect the quality of execution, the precision in every detail and our commitment to the highest working standards.`}};
 const HK=['life','mahra','capfour','hittin','villas','fozan'];
 const shown=new Set();let fxBound=false,statsDone=false;
@@ -580,7 +581,7 @@ function countUp(el,to,dur=1600){const t0=performance.now();(function f(x){const
 function renderRows(){
   const U=HU[lang],list=$('plist');list.innerHTML='';
   const total=HK.reduce((a,k)=>a+PD[k].img.length,0);
-  $('pstats').innerHTML=`<div class="pst"><b data-c="${HK.length}">${statsDone?HK.length:0}</b><span>${U.projects}</span></div><div class="pst"><b data-c="${total}">${statsDone?total:0}</b><span>${U.allPhotos}</span></div>`;
+  $('pstats').innerHTML=`<div class="pst"><b data-c="${HK.length}">${statsDone?HK.length:0}</b><span>${U.done}</span></div><div class="pst"><b data-c="${total}">${statsDone?total:0}</b><span>${U.allPhotos}</span></div>`;
   HK.forEach((k,i)=>{const p=PD[k],n=p.img.length,c=p.c?p.c[lang]:null;
     const d=document.createElement('article');d.className='prow hp'+(i%2?' rev':'')+(shown.has(k)?' in':'');d.dataset.k=k;
     const num=String(i+1).padStart(2,'0');
