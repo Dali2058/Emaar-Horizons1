@@ -251,12 +251,12 @@ html[lang=ar] #catalogue .cat-ar{display:block}
 html[lang=ar] #catalogue .cat-en{display:none}
 /* catalogue + handover videos: same width as the PDF (600px) */
 :root{--cw:600px}
-#catalogue{max-width:var(--cw);margin:24px auto 40px;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(76,29,149,.14)}
+#catalogue{max-width:none;width:100%;margin:0;border-radius:0;overflow:hidden;box-shadow:none}
 .narrow{padding-top:30px}
 .narrow .gal{max-width:var(--cw);padding:0}
 .narrow .gc{width:calc(50% - 8px)}
 .narrow .arr.p{inset-inline-start:8px}.narrow .arr.n{inset-inline-end:8px}
-@media(max-width:640px){#catalogue{margin:40px 0 30px;border-radius:0;box-shadow:none}.narrow .gal{padding:0 4%}}
+@media(max-width:640px){#catalogue{margin:0}.narrow .gal{padding:0 4%}}
 /* alert note above catalogue */
 .note{position:relative;max-width:var(--cw);margin:50px auto 0;scroll-margin-top:110px;padding:20px 22px;display:flex;align-items:center;gap:16px;color:#fff;border-radius:20px;background:linear-gradient(120deg,#4c1d95,#7c3aed,#a78bfa,#7c3aed,#4c1d95);background-size:300% 100%;animation:nsh 6s linear infinite,nin .9s var(--ease) both;box-shadow:0 18px 44px rgba(124,58,237,.35);overflow:hidden}
 .note::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-120%);animation:nsw 3.8s ease-in-out infinite;pointer-events:none}
@@ -486,18 +486,18 @@ const B='https://i.postimg.cc/';
 let lang='ar';try{lang=localStorage.getItem('lang')||'ar'}catch(e){}
 const I={
 ar:{title:'إلكتروميكانيك | إعمار هورايزونز',kingdom:'المملكة العربية السعودية',kingdom2:'المملكة العربية السعودية',
-h1:'كهرباء <em>تأسيس وتشطيب متكامل</em>',
-heroP:'تأسيس وتشطيب كهرباء من الاستلام حتى التسليم، مع التزام تام بالمواعيد المحددة.',
+h1:'إلكتروميكانيك <em>تأسيس وتشطيب متكامل</em>',
+heroP:'أعمال إلكتروميكانيك متكاملة من الكهرباء والتيار الخفيف وأنظمة الباور كنترول والفاير، من الاستلام حتى التسليم، مع التزام تام بالمواعيد المحددة.',
 noteT:'ملحوظة: يوجد فيديوهات وصور للتسليمات بالأسفل',noteB:'شاهد التسليمات',btn1:'شاهد مشاريعنا',btn2:'تواصل معنا',
 b1t:'الفكرة',
-b1p1:'نحن شركة لأعمال الكهرباء تأسيس وتشطيب نستلم الموقع من البداية الى التسليم كما نستلم ملحقات مواقع اهم ما يميزنا التسليم دائما في المواعيد المحدده متابعه الاعمال التي قامت بها الشركه في حاله طلب العميل لذلك. مجالتنا متفرعه في عالم الكهرباء.',
+b1p1:'نحن شركة لأعمال الإلكتروميكانيك تأسيس وتشطيب نستلم الموقع من البداية الى التسليم كما نستلم ملحقات مواقع اهم ما يميزنا التسليم دائما في المواعيد المحدده متابعه الاعمال التي قامت بها الشركه في حاله طلب العميل لذلك. مجالاتنا متفرعة في عالم الإلكتروميكانيك.',
 b2t:'طبيعة العمل',
 b2p1:'نحن شركة نعمل في كهرباء PVC. نعمل على المخططات المطلوبة وتنفيذها.',
 b2p2:'نعمل أيضا في مجال كهرباء التيار الخفيف Low Current مثل تركيب الكاميرات والدش والواي فاي والداتا ومنظومة الفاير Fire Alarm System تركيب وصيانة.',
 b2p3:'نعمل في مجال الباور كنترول Power Control رسم المخططات المطلوبة مع تنفيذها بكل دقة واحترافية، تركيب لوحات الباور وصيانتها وتغيير المطلوب إن وجد.',
 b2p4:'كما يوجد قسم لتركيب التريهات وتصنيعها، كما نقوم بتغيير أنظمة الإنارة إلى سمارت هوم وما شابه ذلك.',
 b3t:'المميزات',
-b3p1:'• متابعة أعمال الكهرباء سواء صيانة أو تركيب.',
+b3p1:'• متابعة الأعمال الإلكتروميكانيكية سواء صيانة أو تركيب.',
 b3p2:'• التواصل مع العملاء الذين قمنا لهم بعمل المشروع لوجود أي مشاكل أو أعطال لحلها في أسرع وقت.',
 b3p3:'• نحن فريق عمل منظم ودقيق في عدم إهدار أي مواد أو خامات يتم العمل بها في المشروع.',
 b3p4:'• العمل دائما بجد ونشاط لانتهاء العمل قبل الميعاد المحدد.',
@@ -507,18 +507,18 @@ fAbout:'مشاريع هندسية متكاملة عظم وبناء وإلكتر�
 rights:'© 2022 إعمار هورايزونز — جميع الحقوق محفوظة',
 nav:['الرئيسية','نبذة عن مشاريعنا','تشطيبات','ديكورات','إلكتروميكانيك','فريق العمل','مستندات','تواصل معنا']},
 en:{title:'Electromechanical | Emaar Horizons',kingdom:'Kingdom of Saudi Arabia',kingdom2:'Kingdom of Saudi Arabia',
-h1:'Electrical <em>Works</em><br>Complete Rough-in & Finishing',
-heroP:'Electrical rough-in and finishing, from site handover to delivery, with full commitment to deadlines.',
+h1:'Electromechanical <em>Works</em><br>Complete Rough-in & Finishing',
+heroP:'Complete electromechanical works covering electrical, low current, power control and fire alarm systems, from site handover to delivery, with full commitment to deadlines.',
 noteT:'Note: handover videos and photos are available below',noteB:'View handovers',btn1:'View Our Projects',btn2:'Contact Us',
 b1t:'The Idea',
-b1p1:'We are an electrical works company covering rough-in and finishing. We take over the site from the very beginning to handover, and also handle site add-ons. What sets us apart is always delivering on the agreed dates, and following up on the work the company has done whenever the client requests it. Our fields branch out across the world of electricity.',
+b1p1:'We are an electromechanical works company covering rough-in and finishing. We take over the site from the very beginning to handover, and also handle site add-ons. What sets us apart is always delivering on the agreed dates, and following up on the work the company has done whenever the client requests it. Our fields branch out across the electromechanical world.',
 b2t:'Nature of Work',
 b2p1:'We work in PVC conduit electrical systems, following the required drawings and executing them.',
 b2p2:'We also work in Low Current systems, such as installing cameras, satellite, Wi-Fi, data networks and Fire Alarm Systems, including installation and maintenance.',
 b2p3:'We work in Power Control: drawing the required schematics and executing them with precision and professionalism, installing and maintaining power panels, and replacing parts when needed.',
 b2p4:'We also have a department for installing and fabricating cable trays, and we upgrade lighting systems to smart home and similar solutions.',
 b3t:'Advantages',
-b3p1:'• Follow-up of electrical works, whether maintenance or installation.',
+b3p1:'• Follow-up of electromechanical works, whether maintenance or installation.',
 b3p2:'• Staying in touch with clients whose projects we completed, to resolve any problems or faults as quickly as possible.',
 b3p3:'• An organized, meticulous team that avoids wasting any materials used on the project.',
 b3p4:'• Always working hard and diligently to finish before the agreed deadline.',
